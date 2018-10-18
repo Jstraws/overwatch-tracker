@@ -1,4 +1,4 @@
-package com.straus.repository;
+package com.straus.repositories;
 
 import com.straus.beans.AppUser;
 import org.springframework.data.jpa.repository.JpaRepository;
