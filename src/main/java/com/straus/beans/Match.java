@@ -53,7 +53,7 @@ public class Match {
 	private boolean isPlacement;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "APP_USER")
+	@JoinColumn(name = "APP_USER_ID")
 	@ApiModelProperty(value = "User who played the match")
 	private AppUser appUser;
 
