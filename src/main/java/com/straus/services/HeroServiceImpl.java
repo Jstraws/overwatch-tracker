@@ -25,7 +25,7 @@ public class HeroServiceImpl implements HeroService {
 	 */
 	@Override
 	public Hero getHeroById(int heroId) {
-		return heroRepository.getOne(heroId);
+		return heroRepository.findById(heroId).orElse(new Hero());
 	}
 
 	/**
@@ -35,7 +35,7 @@ public class HeroServiceImpl implements HeroService {
 	 */
 	@Override
 	public List<Hero> getAllHeroes() {
-		return heroRepository.findAll();
+		return heroRepository.findAllByOrderByName();
 	}
 
 	/**
@@ -46,7 +46,11 @@ public class HeroServiceImpl implements HeroService {
 	 */
 	@Override
 	public Hero createHero(Hero hero) {
-		return heroRepository.save(hero);
+		if (hero != null && !(hero.equals(new Hero()))) {
+			return heroRepository.save(hero);
+		} else {
+			return null;
+		}
 	}
 
 	/**
@@ -55,8 +59,12 @@ public class HeroServiceImpl implements HeroService {
 	 * @param hero Hero object to update
 	 */
 	@Override
-	public void updateHero(Hero hero) {
-		heroRepository.save(hero);
+	public Hero updateHero(Hero hero) {
+		if (hero != null && !(hero.equals(new Hero()))) {
+			return heroRepository.save(hero);
+		} else {
+			return null;
+		}
 	}
 
 	/**
@@ -66,6 +74,8 @@ public class HeroServiceImpl implements HeroService {
 	 */
 	@Override
 	public void deleteHeroById(int heroId) {
-		heroRepository.deleteById(heroId);
+		if (heroId > 0) {
+			heroRepository.deleteById(heroId);
+		}
 	}
 }

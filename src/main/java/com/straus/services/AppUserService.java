@@ -35,7 +35,7 @@ public interface AppUserService {
 	 *
 	 * @param user User object to update
 	 */
-	void updateUser(AppUser user);
+	AppUser updateUser(AppUser user);
 
 	/**
 	 * Method to remove a user from the system

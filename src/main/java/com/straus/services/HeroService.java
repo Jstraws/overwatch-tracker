@@ -35,7 +35,7 @@ public interface HeroService {
 	 *
 	 * @param hero Hero object to update
 	 */
-	void updateHero(Hero hero);
+	Hero updateHero(Hero hero);
 
 	/**
 	 * Method to delete a hero by its id

@@ -4,10 +4,12 @@ import com.straus.beans.AppUser;
 import com.straus.repositories.AppUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.List;
 
 @Service
+@CrossOrigin
 public class AppUserServiceImpl implements AppUserService {
 
 	private final AppUserRepository appUserRepository;
@@ -25,7 +27,7 @@ public class AppUserServiceImpl implements AppUserService {
 	 */
 	@Override
 	public AppUser getUserById(int userId) {
-		return appUserRepository.getOne(userId);
+		return appUserRepository.findById(userId).orElse(new AppUser());
 	}
 
 	/**
@@ -46,7 +48,11 @@ public class AppUserServiceImpl implements AppUserService {
 	 */
 	@Override
 	public AppUser createUser(AppUser user) {
-		return appUserRepository.save(user);
+		if (user != null && !(user.equals(new AppUser()))) {
+			return appUserRepository.save(user);
+		} else {
+			return null;
+		}
 	}
 
 	/**
@@ -55,8 +61,12 @@ public class AppUserServiceImpl implements AppUserService {
 	 * @param user User object to update
 	 */
 	@Override
-	public void updateUser(AppUser user) {
-		appUserRepository.save(user);
+	public AppUser updateUser(AppUser user) {
+		if (user != null && !(user.equals(new AppUser()))) {
+			return appUserRepository.save(user);
+		} else {
+			return null;
+		}
 	}
 
 	/**
@@ -66,6 +76,8 @@ public class AppUserServiceImpl implements AppUserService {
 	 */
 	@Override
 	public void deleteUser(int userId) {
-		appUserRepository.deleteById(userId);
+		if (userId > 0) {
+			appUserRepository.deleteById(userId);
+		}
 	}
 }
