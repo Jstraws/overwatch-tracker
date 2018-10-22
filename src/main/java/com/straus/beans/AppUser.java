@@ -25,9 +25,19 @@ public class AppUser {
 	@ApiModelProperty(value = "Last name of the User")
 	private String lastName;
 
-	public AppUser(String firstName, String lastName) {
+	@Column(name = "USERNAME")
+	@ApiModelProperty(value = "Username to log into the application")
+	private String userName;
+
+	@Column(name = "PASSWORD")
+	@ApiModelProperty(value = "Password of the user")
+	private int password;
+
+	public AppUser(String firstName, String lastName, String userName, String password) {
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.userName = userName;
+		this.password = password.hashCode();
 	}
 
 	public AppUser() {
@@ -55,6 +65,26 @@ public class AppUser {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public int getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password.hashCode();
+	}
+
+	public void setPassword(int password) {
+		this.password = password;
 	}
 
 	@Override
