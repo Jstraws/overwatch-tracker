@@ -1,6 +1,7 @@
 package com.straus.controllers;
 
 import com.straus.beans.AppUser;
+import com.straus.beans.LoginCredentials;
 import com.straus.services.AppUserService;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiOperation;
@@ -76,6 +77,21 @@ public class AppUserController {
 			return new ResponseEntity<>(tempUser, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+	}
+
+	@PostMapping(value = "/login", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ApiOperation(value = "Validate that a user exists, and return user if found", response = AppUser.class)
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "User successfully found"),
+			@ApiResponse(code = 404, message = "User does not exist")
+	})
+	public ResponseEntity<AppUser> login(@Valid @RequestBody LoginCredentials loginCredentials) {
+		AppUser tempUser = appUserService.getUserByNamePass(loginCredentials.getUsername().toLowerCase(), loginCredentials.getPassword());
+		if (tempUser != null) {
+			return new ResponseEntity<>(tempUser, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
 

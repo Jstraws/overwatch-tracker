@@ -31,6 +31,22 @@ public class AppUserServiceImpl implements AppUserService {
 	}
 
 	/**
+	 * Method to get a user by username/pass for logging in
+	 *
+	 * @param username Username of the user to filter by
+	 * @param password Password of the user to filter by
+	 * @return A user with matching username/password
+	 */
+	@Override
+	public AppUser getUserByNamePass(String username, String password) {
+		if (username != null && !(username.equals("")) && password != null && !(password.isEmpty())) {
+			return appUserRepository.findAppUserByUserNameAndPassword(username.toLowerCase(), password.hashCode());
+		} else {
+			return null;
+		}
+	}
+
+	/**
 	 * Method to get all users in the system
 	 *
 	 * @return A list of all users

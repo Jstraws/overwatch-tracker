@@ -93,13 +93,15 @@ public class AppUser {
 		if (o == null || getClass() != o.getClass()) return false;
 		AppUser appUser = (AppUser) o;
 		return getUserId() == appUser.getUserId() &&
+				getPassword() == appUser.getPassword() &&
 				Objects.equals(getFirstName(), appUser.getFirstName()) &&
-				Objects.equals(getLastName(), appUser.getLastName());
+				Objects.equals(getLastName(), appUser.getLastName()) &&
+				Objects.equals(getUserName(), appUser.getUserName());
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(getUserId(), getFirstName(), getLastName());
+		return Objects.hash(getUserId(), getFirstName(), getLastName(), getUserName(), getPassword());
 	}
 
 	@Override
@@ -108,6 +110,8 @@ public class AppUser {
 				"userId=" + userId +
 				", firstName='" + firstName + '\'' +
 				", lastName='" + lastName + '\'' +
+				", userName='" + userName + '\'' +
+				", password=" + password +
 				'}';
 	}
 }

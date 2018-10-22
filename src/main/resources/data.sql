@@ -1,14 +1,14 @@
 -----------------------------------------------------
 -- Insert basic user data ---------------------------
 -----------------------------------------------------
-INSERT INTO APP_USER
-VALUES (500, 'Jeremy', 'Straus');
-INSERT INTO APP_USER
-VALUES (501, 'Alan', 'Sato');
-INSERT INTO APP_USER
-VALUES (502, 'Molly', 'Merritt');
-INSERT INTO APP_USER
-VALUES (503, 'Rishabh', 'Ranah');
+INSERT INTO APP_USER (USER_ID, FIRST_NAME, LAST_NAME, USERNAME, PASSWORD)
+VALUES (500, 'Jeremy', 'Straus', 'jstraus', -1146911805);
+INSERT INTO APP_USER (USER_ID, FIRST_NAME, LAST_NAME, USERNAME, PASSWORD)
+VALUES (501, 'Alan', 'Sato', 'asato', -1146911805);
+INSERT INTO APP_USER (USER_ID, FIRST_NAME, LAST_NAME, USERNAME, PASSWORD)
+VALUES (502, 'Molly', 'Merritt', 'mmerritt', -1146911805);
+INSERT INTO APP_USER (USER_ID, FIRST_NAME, LAST_NAME, USERNAME, PASSWORD)
+VALUES (503, 'Rishabh', 'Ranah', 'rranah', -1146911805);
 
 -----------------------------------------------------
 -- Insert hero list ---------------------------------
