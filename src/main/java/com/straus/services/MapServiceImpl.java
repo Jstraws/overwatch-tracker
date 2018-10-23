@@ -1,8 +1,10 @@
 package com.straus.services;
 
 import com.straus.beans.Map;
+import com.straus.beans.MapType;
 import com.straus.repositories.MapRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,13 +31,34 @@ public class MapServiceImpl implements MapService {
 	}
 
 	/**
+	 * Method to get a list of maps by type
+	 *
+	 * @param mapType Type of the map to retrieve
+	 * @return A list of maps with matching MapType
+	 */
+	@Override
+	public List<Map> getMapsByType(MapType mapType) {
+		return mapRepository.findAllByTypeOrderByName(mapType);
+	}
+
+	/**
+	 * Method to find all maps used in comp/quick play
+	 *
+	 * @return A list of maps that excludes arcade maps
+	 */
+	@Override
+	public List<Map> getCompMaps() {
+		return mapRepository.findAllByTypeNotOrderByName(MapType.ARENA);
+	}
+
+	/**
 	 * Method to get all maps in the system
 	 *
 	 * @return A list of all maps
 	 */
 	@Override
 	public List<Map> getAllMaps() {
-		return mapRepository.findAll();
+		return mapRepository.findAll(new Sort(Sort.Direction.ASC, "name"));
 	}
 
 	/**

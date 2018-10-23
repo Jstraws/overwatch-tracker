@@ -1,6 +1,7 @@
 package com.straus.services;
 
 import com.straus.beans.Map;
+import com.straus.beans.MapType;
 import io.swagger.annotations.ApiModel;
 
 import java.util.List;
@@ -14,6 +15,21 @@ public interface MapService {
 	 * @return A map with the matching id
 	 */
 	Map getMapById(int mapId);
+
+	/**
+	 * Method to get a list of maps by type
+	 *
+	 * @param mapType Type of the map to retrieve
+	 * @return A list of maps with matching MapType
+	 */
+	List<Map> getMapsByType(MapType mapType);
+
+	/**
+	 * Method to find all maps used in comp/quick play
+	 *
+	 * @return A list of maps that excludes arcade maps
+	 */
+	List<Map> getCompMaps();
 
 	/**
 	 * Method to get all maps in the system

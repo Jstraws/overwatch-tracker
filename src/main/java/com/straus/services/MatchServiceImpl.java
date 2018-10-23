@@ -80,7 +80,7 @@ public class MatchServiceImpl implements MatchService {
 	 */
 	@Override
 	public List<Match> getMatchByUserId(int userId) {
-		return matchRepository.findAllByAppUserUserId(userId);
+		return matchRepository.findAllByAppUserUserIdOrderByMatchDate(userId);
 	}
 
 	/**
@@ -91,7 +91,7 @@ public class MatchServiceImpl implements MatchService {
 	 */
 	@Override
 	public List<Match> getMatchByResult(Result result) {
-		return matchRepository.findAllByResult(result);
+		return matchRepository.findAllByResultOrderByMatchDate(result);
 	}
 
 	/**
@@ -102,7 +102,7 @@ public class MatchServiceImpl implements MatchService {
 	 */
 	@Override
 	public List<Match> getMatchByHero(Hero hero) {
-		return matchRepository.findAllByHeroesContains(hero);
+		return matchRepository.findAllByHeroesContainsOrderByMatchDate(hero);
 	}
 
 	/**
@@ -113,6 +113,6 @@ public class MatchServiceImpl implements MatchService {
 	 */
 	@Override
 	public List<Match> getMatchBySeason(Season season) {
-		return matchRepository.findAllByMatchDateBetween(season.getStartDate(), season.getEndDate());
+		return matchRepository.findAllByMatchDateBetweenOrderByMatchDate(season.getStartDate(), season.getEndDate());
 	}
 }

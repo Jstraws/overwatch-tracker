@@ -17,7 +17,7 @@ public interface MatchRepository extends JpaRepository<Match, Integer> {
 	 * @param userId User to filter by
 	 * @return A list of matches for the specified user
 	 */
-	List<Match> findAllByAppUserUserId(int userId);
+	List<Match> findAllByAppUserUserIdOrderByMatchDate(int userId);
 
 	/**
 	 * Method to get all matches for a specific result
@@ -25,7 +25,7 @@ public interface MatchRepository extends JpaRepository<Match, Integer> {
 	 * @param result Result to filter by (WIN, LOSS)
 	 * @return A list of matches for the specific result
 	 */
-	List<Match> findAllByResult(Result result);
+	List<Match> findAllByResultOrderByMatchDate(Result result);
 
 	/**
 	 * Method to get all matches in which a specific hero was played
@@ -33,7 +33,7 @@ public interface MatchRepository extends JpaRepository<Match, Integer> {
 	 * @param hero Hero to filter by
 	 * @return A list of matches containing the specific hero
 	 */
-	List<Match> findAllByHeroesContains(Hero hero);
+	List<Match> findAllByHeroesContainsOrderByMatchDate(Hero hero);
 
 	/**
 	 * Method to get all matches played during a specified time period
@@ -42,5 +42,5 @@ public interface MatchRepository extends JpaRepository<Match, Integer> {
 	 * @param endDate   Latest date match could have been played
 	 * @return A list of matches
 	 */
-	List<Match> findAllByMatchDateBetween(Timestamp startDate, Timestamp endDate);
+	List<Match> findAllByMatchDateBetweenOrderByMatchDate(Timestamp startDate, Timestamp endDate);
 }
