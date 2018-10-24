@@ -78,4 +78,12 @@ public interface MatchService {
 	 * @return A list of matches
 	 */
 	List<Match> getMatchBySeason(Season season);
+
+	/**
+	 * Method to get the most recent match a user played
+	 *
+	 * @param userId User id to filter by
+	 * @return A single match
+	 */
+	Match getUsersMostRecentMatch(int userId);
 }

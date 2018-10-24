@@ -26,12 +26,17 @@ public class Hero {
 	@ApiModelProperty("The class of the hero")
 	private HeroType type;
 
-	public Hero(String name, HeroType type) {
-		this.name = name;
-		this.type = type;
-	}
+	@Column(name = "ICON_URL")
+	@ApiModelProperty("Url for the hero's icon")
+	private String heroUrl;
 
 	public Hero() {
+	}
+
+	public Hero(String name, HeroType type, String heroUrl) {
+		this.name = name;
+		this.type = type;
+		this.heroUrl = heroUrl;
 	}
 
 	public int getHeroId() {
@@ -58,6 +63,14 @@ public class Hero {
 		this.type = type;
 	}
 
+	public String getHeroUrl() {
+		return heroUrl;
+	}
+
+	public void setHeroUrl(String heroUrl) {
+		this.heroUrl = heroUrl;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
@@ -65,12 +78,13 @@ public class Hero {
 		Hero hero = (Hero) o;
 		return getHeroId() == hero.getHeroId() &&
 				Objects.equals(getName(), hero.getName()) &&
-				getType() == hero.getType();
+				getType() == hero.getType() &&
+				Objects.equals(getHeroUrl(), hero.getHeroUrl());
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(getHeroId(), getName(), getType());
+		return Objects.hash(getHeroId(), getName(), getType(), getHeroUrl());
 	}
 
 	@Override
@@ -79,6 +93,7 @@ public class Hero {
 				"heroId=" + heroId +
 				", name='" + name + '\'' +
 				", type=" + type +
+				", heroUrl='" + heroUrl + '\'' +
 				'}';
 	}
 }

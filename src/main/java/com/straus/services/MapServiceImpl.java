@@ -27,7 +27,7 @@ public class MapServiceImpl implements MapService {
 	 */
 	@Override
 	public Map getMapById(int mapId) {
-		return mapRepository.getOne(mapId);
+		return mapRepository.findById(mapId).orElse(new Map());
 	}
 
 	/**

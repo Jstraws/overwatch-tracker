@@ -28,7 +28,7 @@ public class MatchServiceImpl implements MatchService {
 	 */
 	@Override
 	public Match getMatchById(int matchId) {
-		return matchRepository.getOne(matchId);
+		return matchRepository.findById(matchId).orElse(new Match());
 	}
 
 	/**
@@ -80,7 +80,7 @@ public class MatchServiceImpl implements MatchService {
 	 */
 	@Override
 	public List<Match> getMatchByUserId(int userId) {
-		return matchRepository.findAllByAppUserUserIdOrderByMatchDate(userId);
+		return matchRepository.findAllByAppUserUserIdOrderByMatchDateDesc(userId);
 	}
 
 	/**
@@ -91,7 +91,7 @@ public class MatchServiceImpl implements MatchService {
 	 */
 	@Override
 	public List<Match> getMatchByResult(Result result) {
-		return matchRepository.findAllByResultOrderByMatchDate(result);
+		return matchRepository.findAllByResultOrderByMatchDateDesc(result);
 	}
 
 	/**
@@ -102,7 +102,7 @@ public class MatchServiceImpl implements MatchService {
 	 */
 	@Override
 	public List<Match> getMatchByHero(Hero hero) {
-		return matchRepository.findAllByHeroesContainsOrderByMatchDate(hero);
+		return matchRepository.findAllByHeroesContainsOrderByMatchDateDesc(hero);
 	}
 
 	/**
@@ -113,6 +113,17 @@ public class MatchServiceImpl implements MatchService {
 	 */
 	@Override
 	public List<Match> getMatchBySeason(Season season) {
-		return matchRepository.findAllByMatchDateBetweenOrderByMatchDate(season.getStartDate(), season.getEndDate());
+		return matchRepository.findAllByMatchDateBetweenOrderByMatchDateDesc(season.getStartDate(), season.getEndDate());
+	}
+
+	/**
+	 * Method to get the most recent match a user played
+	 *
+	 * @param userId User id to filter by
+	 * @return A single match
+	 */
+	@Override
+	public Match getUsersMostRecentMatch(int userId) {
+		return matchRepository.findFirstByAppUserUserIdOrderByMatchDateDesc(userId);
 	}
 }

@@ -8,6 +8,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "MATCH")
@@ -44,26 +45,26 @@ public class Match {
 	@ApiModelProperty(value = "Date match was played")
 	private Timestamp matchDate;
 
+	@Column(name = "RANK")
+	@ApiModelProperty(value = "User's rank after the match")
+	private int rank;
+
 	@Column(name = "RANK_DIFFERENCE")
 	@ApiModelProperty(value = "Change in rank from previous match")
 	private int rankDifference;
-
-	@Column(name = "IS_PLACEMENT")
-	@ApiModelProperty(value = "Is match a placement match or not")
-	private boolean isPlacement;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "APP_USER_ID")
 	@ApiModelProperty(value = "User who played the match")
 	private AppUser appUser;
 
-	public Match(Result result, Map map, List<Hero> heroes, Timestamp matchDate, int rankDifference, boolean isPlacement, AppUser appUser) {
+	public Match(Result result, Map map, List<Hero> heroes, Timestamp matchDate, int rank, int rankDifference, AppUser appUser) {
 		this.result = result;
 		this.map = map;
 		this.heroes = heroes;
 		this.matchDate = matchDate;
+		this.rank = rank;
 		this.rankDifference = rankDifference;
-		this.isPlacement = isPlacement;
 		this.appUser = appUser;
 	}
 
@@ -110,6 +111,14 @@ public class Match {
 		this.matchDate = matchDate;
 	}
 
+	public int getRank() {
+		return rank;
+	}
+
+	public void setRank(int rank) {
+		this.rank = rank;
+	}
+
 	public int getRankDifference() {
 		return rankDifference;
 	}
@@ -118,19 +127,45 @@ public class Match {
 		this.rankDifference = rankDifference;
 	}
 
-	public boolean isPlacement() {
-		return isPlacement;
-	}
-
-	public void setPlacement(boolean placement) {
-		isPlacement = placement;
-	}
-
 	public AppUser getAppUser() {
 		return appUser;
 	}
 
 	public void setAppUser(AppUser appUser) {
 		this.appUser = appUser;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+		Match match = (Match) o;
+		return getMatchId() == match.getMatchId() &&
+				getRank() == match.getRank() &&
+				getRankDifference() == match.getRankDifference() &&
+				getResult() == match.getResult() &&
+				Objects.equals(getMap(), match.getMap()) &&
+				Objects.equals(getHeroes(), match.getHeroes()) &&
+				Objects.equals(getMatchDate(), match.getMatchDate()) &&
+				Objects.equals(getAppUser(), match.getAppUser());
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(getMatchId(), getResult(), getMap(), getHeroes(), getMatchDate(), getRank(), getRankDifference(), getAppUser());
+	}
+
+	@Override
+	public String toString() {
+		return "Match{" +
+				"matchId=" + matchId +
+				", result=" + result +
+				", map=" + map +
+				", heroes=" + heroes +
+				", matchDate=" + matchDate +
+				", rank=" + rank +
+				", rankDifference=" + rankDifference +
+				", appUser=" + appUser +
+				'}';
 	}
 }

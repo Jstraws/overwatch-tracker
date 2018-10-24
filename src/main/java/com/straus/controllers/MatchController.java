@@ -12,6 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -37,6 +38,49 @@ public class MatchController {
 		try {
 			return new ResponseEntity<>(matchService.getMatchByUserId(id), HttpStatus.OK);
 		} catch (Exception e) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+
+	@GetMapping(value = "/recent/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@ApiOperation(value = "A method to get the most recent match for a user", response = Match.class)
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "Successfully retrieved match"),
+			@ApiResponse(code = 404, message = "User not found in system")
+	})
+	public ResponseEntity<Match> getMostRecentMatchForUser(@PathVariable int id) {
+		try {
+			return new ResponseEntity<>(matchService.getUsersMostRecentMatch(id), HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+
+	@PostMapping(value = "/new", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ApiOperation(value = "A method to add a new match", response = Match.class)
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "Successfully added match"),
+			@ApiResponse(code = 401, message = "Bad data, match not added")
+	})
+	public ResponseEntity<Match> addNewMatch(@Valid @RequestBody Match match) {
+		try {
+			return new ResponseEntity<>(matchService.createMatch(match), HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+	}
+
+	@GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@ApiOperation(value = "A method to get a single match", response = Match.class)
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "Successfully retrieved match"),
+			@ApiResponse(code = 404, message = "Match could not be found")
+	})
+	public ResponseEntity<Match> getMatchById(@PathVariable int id) {
+		Match tempMatch = matchService.getMatchById(id);
+		if (tempMatch != null && !(tempMatch.equals(new Match()))) {
+			return new ResponseEntity<>(tempMatch, HttpStatus.OK);
+		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}

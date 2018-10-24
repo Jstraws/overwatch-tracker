@@ -13,62 +13,146 @@ VALUES (503, 'Rishabh', 'Ranah', 'rranah', -1146911805, 3000);
 -----------------------------------------------------
 -- Insert hero list ---------------------------------
 -----------------------------------------------------
-INSERT INTO HERO
-VALUES (500, 'D.Va', 'TANK');
-INSERT INTO HERO
-VALUES (501, 'Orisa', 'TANK');
-INSERT INTO HERO
-VALUES (502, 'Reinhardt', 'TANK');
-INSERT INTO HERO
-VALUES (503, 'Roadhog', 'TANK');
-INSERT INTO HERO
-VALUES (504, 'Winston', 'TANK');
-INSERT INTO HERO
-VALUES (505, 'Wrecking Ball', 'TANK');
-INSERT INTO HERO
-VALUES (506, 'Zarya', 'TANK');
-INSERT INTO HERO
-VALUES (507, 'Bastion', 'DAMAGE');
-INSERT INTO HERO
-VALUES (508, 'Doomfist', 'DAMAGE');
-INSERT INTO HERO
-VALUES (509, 'Genji', 'DAMAGE');
-INSERT INTO HERO
-VALUES (510, 'Hanzo', 'DAMAGE');
-INSERT INTO HERO
-VALUES (511, 'Junkrat', 'DAMAGE');
-INSERT INTO HERO
-VALUES (512, 'McCree', 'DAMAGE');
-INSERT INTO HERO
-VALUES (513, 'Mei', 'DAMAGE');
-INSERT INTO HERO
-VALUES (514, 'Pharah', 'DAMAGE');
-INSERT INTO HERO
-VALUES (515, 'Reaper', 'DAMAGE');
-INSERT INTO HERO
-VALUES (516, 'Soldier: 76', 'DAMAGE');
-INSERT INTO HERO
-VALUES (517, 'Sombra', 'DAMAGE');
-INSERT INTO HERO
-VALUES (518, 'Symmetra', 'DAMAGE');
-INSERT INTO HERO
-VALUES (519, 'Torbjorn', 'DAMAGE');
-INSERT INTO HERO
-VALUES (520, 'Tracer', 'DAMAGE');
-INSERT INTO HERO
-VALUES (521, 'Widowmaker', 'DAMAGE');
-INSERT INTO HERO
-VALUES (522, 'Ana', 'SUPPORT');
-INSERT INTO HERO
-VALUES (523, 'Brigitte', 'SUPPORT');
-INSERT INTO HERO
-VALUES (524, 'Lucio', 'SUPPORT');
-INSERT INTO HERO
-VALUES (525, 'Mercy', 'SUPPORT');
-INSERT INTO HERO
-VALUES (526, 'Moira', 'SUPPORT');
-INSERT INTO HERO
-VALUES (527, 'Zenyatta', 'SUPPORT');
+INSERT INTO HERO (HERO_ID, NAME, TYPE, ICON_URL)
+VALUES (1,
+        'Orisa',
+        'TANK',
+        'https://d1u5p3l4wpay3k.cloudfront.net/overwatch_gamepedia/1/11/Icon-Orisa.png?version=34ef578689695a798c1e4f15832e0539');
+INSERT INTO HERO (HERO_ID, NAME, TYPE, ICON_URL)
+VALUES (2,
+        'Reinhardt',
+        'TANK',
+        'https://d1u5p3l4wpay3k.cloudfront.net/overwatch_gamepedia/8/83/Icon-Reinhardt.png?version=5e9fe8ee3ff8e9889b5805ad99806e1a');
+INSERT INTO HERO (HERO_ID, NAME, TYPE, ICON_URL)
+VALUES (3,
+        'Roadhog',
+        'TANK',
+        'https://d1u5p3l4wpay3k.cloudfront.net/overwatch_gamepedia/1/16/Icon-Roadhog.png?version=66e75bb2a39387f4b3061efb9289011c');
+INSERT INTO HERO (HERO_ID, NAME, TYPE, ICON_URL)
+VALUES (4,
+        'Winston',
+        'TANK',
+        'https://d1u5p3l4wpay3k.cloudfront.net/overwatch_gamepedia/f/f8/Icon-Winston.png?version=ec5d948150e814888114ac2d30237ebe');
+INSERT INTO HERO (HERO_ID, NAME, TYPE, ICON_URL)
+VALUES (5,
+        'Wrecking Ball',
+        'TANK',
+        'https://d1u5p3l4wpay3k.cloudfront.net/overwatch_gamepedia/c/ca/Icon-Wrecking_Ball.png?version=feb9b997b3a7c21c33a5f8968c6e181c');
+INSERT INTO HERO (HERO_ID, NAME, TYPE, ICON_URL)
+VALUES (6,
+        'Zarya',
+        'TANK',
+        'https://d1u5p3l4wpay3k.cloudfront.net/overwatch_gamepedia/7/75/Icon-Zarya.png?version=2dac71ef6f2a874076bd45170721f473');
+INSERT INTO HERO (HERO_ID, NAME, TYPE, ICON_URL)
+VALUES (7,
+        'Bastion',
+        'DAMAGE',
+        'https://d1u5p3l4wpay3k.cloudfront.net/overwatch_gamepedia/5/51/Icon-Bastion.png?version=0cff9daf2e8b53c9ca9e79375fd20a34');
+INSERT INTO HERO (HERO_ID, NAME, TYPE, ICON_URL)
+VALUES (8,
+        'Doomfist',
+        'DAMAGE',
+        'https://d1u5p3l4wpay3k.cloudfront.net/overwatch_gamepedia/a/a1/Icon-Doomfist.png?version=ce049d237425cacce54adbd78a05b9ab');
+INSERT INTO HERO (HERO_ID, NAME, TYPE, ICON_URL)
+VALUES (9,
+        'Genji',
+        'DAMAGE',
+        'https://d1u5p3l4wpay3k.cloudfront.net/overwatch_gamepedia/1/1c/Icon-Genji.png?version=a9e5afaca36f7dc1f6da99bf89abb2e5');
+INSERT INTO HERO (HERO_ID, NAME, TYPE, ICON_URL)
+VALUES (10,
+        'Hanzo',
+        'DAMAGE',
+        'https://d1u5p3l4wpay3k.cloudfront.net/overwatch_gamepedia/7/71/Icon-Hanzo.png?version=3d088f6cf6ca83213f2aefe4d3f543f3');
+INSERT INTO HERO (HERO_ID, NAME, TYPE, ICON_URL)
+VALUES (11,
+        'Junkrat',
+        'DAMAGE',
+        'https://d1u5p3l4wpay3k.cloudfront.net/overwatch_gamepedia/9/99/Icon-Junkrat.png?version=48f826ccb90babef3b92d24bc7ca5c57');
+INSERT INTO HERO (HERO_ID, NAME, TYPE, ICON_URL)
+VALUES (12,
+        'McCree',
+        'DAMAGE',
+        'https://d1u5p3l4wpay3k.cloudfront.net/overwatch_gamepedia/5/59/Icon-McCree.png?version=581cece81e320e6af31650a4360a3ece');
+INSERT INTO HERO (HERO_ID, NAME, TYPE, ICON_URL)
+VALUES (13,
+        'Mei',
+        'DAMAGE',
+        'https://d1u5p3l4wpay3k.cloudfront.net/overwatch_gamepedia/9/99/Icon-Mei.png?version=644cf60ff1d670c7255d9aedcbf6491c');
+INSERT INTO HERO (HERO_ID, NAME, TYPE, ICON_URL)
+VALUES (14,
+        'Pharah',
+        'DAMAGE',
+        'https://d1u5p3l4wpay3k.cloudfront.net/overwatch_gamepedia/2/29/Icon-Pharah.png?version=833e4b31b246453d9431f3859353790c');
+INSERT INTO HERO (HERO_ID, NAME, TYPE, ICON_URL)
+VALUES (15,
+        'Reaper',
+        'DAMAGE',
+        'https://d1u5p3l4wpay3k.cloudfront.net/overwatch_gamepedia/a/a9/Icon-Reaper.png?version=13f1d74d4281b54d49876d3446b5650d');
+INSERT INTO HERO (HERO_ID, NAME, TYPE, ICON_URL)
+VALUES (16,
+        'Soldier: 76',
+        'DAMAGE',
+        'https://d1u5p3l4wpay3k.cloudfront.net/overwatch_gamepedia/2/2b/Icon-Soldier_76.png?version=481afd615b6c66cdec8172b25a8386ce');
+INSERT INTO HERO (HERO_ID, NAME, TYPE, ICON_URL)
+VALUES (17,
+        'Sombra',
+        'DAMAGE',
+        'https://d1u5p3l4wpay3k.cloudfront.net/overwatch_gamepedia/7/70/Icon-Sombra.png?version=f9fa9701f40e1d04f906958d0f148793');
+INSERT INTO HERO (HERO_ID, NAME, TYPE, ICON_URL)
+VALUES (18,
+        'Symmetra',
+        'DAMAGE',
+        'https://d1u5p3l4wpay3k.cloudfront.net/overwatch_gamepedia/0/06/Icon-Symmetra.png?version=cab51e10df9a16a2e4691bf233ecca91');
+INSERT INTO HERO (HERO_ID, NAME, TYPE, ICON_URL)
+VALUES (19,
+        'Torbjorn',
+        'DAMAGE',
+        'https://d1u5p3l4wpay3k.cloudfront.net/overwatch_gamepedia/c/ca/Icon-Torbj%C3%B6rn.png?version=ac3bd20306b28c618b3714db72a2fe93');
+INSERT INTO HERO (HERO_ID, NAME, TYPE, ICON_URL)
+VALUES (20,
+        'Tracer',
+        'DAMAGE',
+        'https://d1u5p3l4wpay3k.cloudfront.net/overwatch_gamepedia/2/29/Icon-Tracer.png?version=bd08c3080823f198b1de7484993d5629');
+INSERT INTO HERO (HERO_ID, NAME, TYPE, ICON_URL)
+VALUES (21,
+        'Widowmaker',
+        'DAMAGE',
+        'https://d1u5p3l4wpay3k.cloudfront.net/overwatch_gamepedia/5/54/Icon-Widowmaker.png?version=b6f7976d7bfc0bfcfce578d57ac0a6e3');
+INSERT INTO HERO (HERO_ID, NAME, TYPE, ICON_URL)
+VALUES (22,
+        'Ana',
+        'SUPPORT',
+        'https://d1u5p3l4wpay3k.cloudfront.net/overwatch_gamepedia/3/3d/Icon-Ana.png?version=6c1b6131bd6445d374a7472557199600');
+INSERT INTO HERO (HERO_ID, NAME, TYPE, ICON_URL)
+VALUES (23,
+        'Brigitte',
+        'SUPPORT',
+        'https://d1u5p3l4wpay3k.cloudfront.net/overwatch_gamepedia/a/a6/Icon-Brigitte.png?version=adfdc4239254206658804d0b57c54d85');
+INSERT INTO HERO (HERO_ID, NAME, TYPE, ICON_URL)
+VALUES (24,
+        'Lucio',
+        'SUPPORT',
+        'https://d1u5p3l4wpay3k.cloudfront.net/overwatch_gamepedia/5/51/Icon-L%C3%BAcio.png?version=5f000c64ce2105af6c36792cb21d02c8');
+INSERT INTO HERO (HERO_ID, NAME, TYPE, ICON_URL)
+VALUES (25,
+        'Mercy',
+        'SUPPORT',
+        'https://d1u5p3l4wpay3k.cloudfront.net/overwatch_gamepedia/0/03/Icon-Mercy.png?version=7029004f729632a59be88264fc533013');
+INSERT INTO HERO (HERO_ID, NAME, TYPE, ICON_URL)
+VALUES (26,
+        'Moira',
+        'SUPPORT',
+        'https://d1u5p3l4wpay3k.cloudfront.net/overwatch_gamepedia/5/55/Icon-Moira.png?version=e6912cc8411e7919341dd21977b60e56');
+INSERT INTO HERO (HERO_ID, NAME, TYPE, ICON_URL)
+VALUES (27,
+        'Zenyatta',
+        'SUPPORT',
+        'https://d1u5p3l4wpay3k.cloudfront.net/overwatch_gamepedia/f/f7/Icon-Zenyatta.png?version=60a48d307e65de900a638e99c82c7494');
+INSERT INTO HERO (HERO_ID, NAME, TYPE, ICON_URL)
+VALUES (28,
+        'D.Va',
+        'TANK',
+        'https://d1u5p3l4wpay3k.cloudfront.net/overwatch_gamepedia/1/19/Icon-D.Va.png?version=a304c3fc9fadb7b885e28f677a9aec8e');
 
 -----------------------------------------------------
 -- Insert Map list ----------------------------------
@@ -126,26 +210,26 @@ VALUES (523, 'Necropolis', 'ARENA');
 -- Insert match data --------------------------------
 -----------------------------------------------------
 
-INSERT INTO MATCH (MATCH_ID, RESULT, MAP_ID, MATCH_DATE, RANK_DIFFERENCE, IS_PLACEMENT, APP_USER_ID)
-VALUES (500, 'WIN', 500, TO_DATE('2018-01-05 09:40', 'YYYY-MM-DD HH24:MI'), 24, 0, 500);
-INSERT INTO MATCH (MATCH_ID, RESULT, MAP_ID, MATCH_DATE, RANK_DIFFERENCE, IS_PLACEMENT, APP_USER_ID)
-VALUES (501, 'WIN', 501, TO_DATE('2018-02-06 11:06', 'YYYY-MM-DD HH24:MI'), 20, 0, 500);
-INSERT INTO MATCH (MATCH_ID, RESULT, MAP_ID, MATCH_DATE, RANK_DIFFERENCE, IS_PLACEMENT, APP_USER_ID)
-VALUES (502, 'LOSS', 502, TO_DATE('2018-04-20 11:55', 'YYYY-MM-DD HH24:MI'), -22, 0, 500);
-INSERT INTO MATCH (MATCH_ID, RESULT, MAP_ID, MATCH_DATE, RANK_DIFFERENCE, IS_PLACEMENT, APP_USER_ID)
-VALUES (503, 'WIN', 503, TO_DATE('2018-03-19 12:22', 'YYYY-MM-DD HH24:MI'), 30, 0, 500);
-INSERT INTO MATCH (MATCH_ID, RESULT, MAP_ID, MATCH_DATE, RANK_DIFFERENCE, IS_PLACEMENT, APP_USER_ID)
-VALUES (504, 'LOSS', 504, TO_DATE('2018-07-30 13:08', 'YYYY-MM-DD HH24:MI'), -15, 0, 500);
-INSERT INTO MATCH (MATCH_ID, RESULT, MAP_ID, MATCH_DATE, RANK_DIFFERENCE, IS_PLACEMENT, APP_USER_ID)
-VALUES (505, 'LOSS', 505, TO_DATE('2018-06-10 14:12', 'YYYY-MM-DD HH24:MI'), -20, 0, 500);
-INSERT INTO MATCH (MATCH_ID, RESULT, MAP_ID, MATCH_DATE, RANK_DIFFERENCE, IS_PLACEMENT, APP_USER_ID)
-VALUES (506, 'WIN', 506, TO_DATE('2018-04-01 14:45', 'YYYY-MM-DD HH24:MI'), 24, 0, 500);
-INSERT INTO MATCH (MATCH_ID, RESULT, MAP_ID, MATCH_DATE, RANK_DIFFERENCE, IS_PLACEMENT, APP_USER_ID)
-VALUES (507, 'WIN', 507, TO_DATE('2018-02-20 16:25', 'YYYY-MM-DD HH24:MI'), 25, 0, 500);
-INSERT INTO MATCH (MATCH_ID, RESULT, MAP_ID, MATCH_DATE, RANK_DIFFERENCE, IS_PLACEMENT, APP_USER_ID)
-VALUES (508, 'WIN', 508, TO_DATE('2018-08-28 16:43', 'YYYY-MM-DD HH24:MI'), 25, 0, 500);
-INSERT INTO MATCH (MATCH_ID, RESULT, MAP_ID, MATCH_DATE, RANK_DIFFERENCE, IS_PLACEMENT, APP_USER_ID)
-VALUES (509, 'LOSS', 509, TO_DATE('2018-09-13 10:51', 'YYYY-MM-DD HH24:MI'), -22, 0, 500);
+INSERT INTO MATCH (MATCH_ID, RESULT, MAP_ID, MATCH_DATE, RANK, RANK_DIFFERENCE, APP_USER_ID)
+VALUES (500, 'WIN', 500, TO_DATE('2018-01-05 09:40', 'YYYY-MM-DD HH24:MI'), 3000, 0, 500);
+INSERT INTO MATCH (MATCH_ID, RESULT, MAP_ID, MATCH_DATE, RANK, RANK_DIFFERENCE, APP_USER_ID)
+VALUES (501, 'WIN', 501, TO_DATE('2018-02-06 11:06', 'YYYY-MM-DD HH24:MI'), 3020, 20, 500);
+INSERT INTO MATCH (MATCH_ID, RESULT, MAP_ID, MATCH_DATE, RANK, RANK_DIFFERENCE, APP_USER_ID)
+VALUES (502, 'LOSS', 502, TO_DATE('2018-04-20 11:55', 'YYYY-MM-DD HH24:MI'), 2998, -22, 500);
+INSERT INTO MATCH (MATCH_ID, RESULT, MAP_ID, MATCH_DATE, RANK, RANK_DIFFERENCE, APP_USER_ID)
+VALUES (503, 'WIN', 503, TO_DATE('2018-03-19 12:22', 'YYYY-MM-DD HH24:MI'), 3028, 30, 500);
+INSERT INTO MATCH (MATCH_ID, RESULT, MAP_ID, MATCH_DATE, RANK, RANK_DIFFERENCE, APP_USER_ID)
+VALUES (504, 'LOSS', 504, TO_DATE('2018-07-30 13:08', 'YYYY-MM-DD HH24:MI'), 3013, -15, 500);
+INSERT INTO MATCH (MATCH_ID, RESULT, MAP_ID, MATCH_DATE, RANK, RANK_DIFFERENCE, APP_USER_ID)
+VALUES (505, 'LOSS', 505, TO_DATE('2018-06-10 14:12', 'YYYY-MM-DD HH24:MI'), 2993, -20, 500);
+INSERT INTO MATCH (MATCH_ID, RESULT, MAP_ID, MATCH_DATE, RANK, RANK_DIFFERENCE, APP_USER_ID)
+VALUES (506, 'WIN', 506, TO_DATE('2018-04-01 14:45', 'YYYY-MM-DD HH24:MI'), 3017, 24, 500);
+INSERT INTO MATCH (MATCH_ID, RESULT, MAP_ID, MATCH_DATE, RANK, RANK_DIFFERENCE, APP_USER_ID)
+VALUES (507, 'WIN', 507, TO_DATE('2018-02-20 16:25', 'YYYY-MM-DD HH24:MI'), 3042, 25, 500);
+INSERT INTO MATCH (MATCH_ID, RESULT, MAP_ID, MATCH_DATE, RANK, RANK_DIFFERENCE, APP_USER_ID)
+VALUES (508, 'WIN', 508, TO_DATE('2018-08-28 16:43', 'YYYY-MM-DD HH24:MI'), 3067, 25, 500);
+INSERT INTO MATCH (MATCH_ID, RESULT, MAP_ID, MATCH_DATE, RANK, RANK_DIFFERENCE, APP_USER_ID)
+VALUES (509, 'LOSS', 509, TO_DATE('2018-09-13 10:51', 'YYYY-MM-DD HH24:MI'), 3045, -22, 500);
 
 -----------------------------------------------------
 -- Insert Match/Hero data ---------------------------
@@ -153,47 +237,47 @@ VALUES (509, 'LOSS', 509, TO_DATE('2018-09-13 10:51', 'YYYY-MM-DD HH24:MI'), -22
 
 
 INSERT INTO MATCH_HERO (MATCH_ID, HERO_ID)
-VALUES (501, 522);
+VALUES (501, 22);
 INSERT INTO MATCH_HERO (MATCH_ID, HERO_ID)
-VALUES (501, 526);
+VALUES (501, 26);
 INSERT INTO MATCH_HERO (MATCH_ID, HERO_ID)
-VALUES (502, 523);
+VALUES (502, 23);
 INSERT INTO MATCH_HERO (MATCH_ID, HERO_ID)
-VALUES (502, 526);
+VALUES (502, 26);
 INSERT INTO MATCH_HERO (MATCH_ID, HERO_ID)
-VALUES (503, 525);
+VALUES (503, 25);
 INSERT INTO MATCH_HERO (MATCH_ID, HERO_ID)
-VALUES (504, 506);
+VALUES (504, 6);
 INSERT INTO MATCH_HERO (MATCH_ID, HERO_ID)
-VALUES (504, 526);
+VALUES (504, 26);
 INSERT INTO MATCH_HERO (MATCH_ID, HERO_ID)
-VALUES (504, 523);
+VALUES (504, 23);
 INSERT INTO MATCH_HERO (MATCH_ID, HERO_ID)
-VALUES (505, 522);
+VALUES (505, 22);
 INSERT INTO MATCH_HERO (MATCH_ID, HERO_ID)
-VALUES (505, 523);
+VALUES (505, 23);
 INSERT INTO MATCH_HERO (MATCH_ID, HERO_ID)
-VALUES (506, 526);
+VALUES (506, 26);
 INSERT INTO MATCH_HERO (MATCH_ID, HERO_ID)
-VALUES (506, 523);
+VALUES (506, 23);
 INSERT INTO MATCH_HERO (MATCH_ID, HERO_ID)
-VALUES (507, 527);
+VALUES (507, 27);
 INSERT INTO MATCH_HERO (MATCH_ID, HERO_ID)
-VALUES (507, 523);
+VALUES (507, 23);
 INSERT INTO MATCH_HERO (MATCH_ID, HERO_ID)
-VALUES (508, 526);
+VALUES (508, 26);
 INSERT INTO MATCH_HERO (MATCH_ID, HERO_ID)
-VALUES (509, 517);
+VALUES (509, 17);
 INSERT INTO MATCH_HERO (MATCH_ID, HERO_ID)
-VALUES (509, 518);
+VALUES (509, 18);
 INSERT INTO MATCH_HERO (MATCH_ID, HERO_ID)
-VALUES (509, 519);
+VALUES (509, 19);
 INSERT INTO MATCH_HERO (MATCH_ID, HERO_ID)
-VALUES (509, 500);
+VALUES (509, 28);
 INSERT INTO MATCH_HERO (MATCH_ID, HERO_ID)
-VALUES (508, 513);
+VALUES (508, 13);
 INSERT INTO MATCH_HERO (MATCH_ID, HERO_ID)
-VALUES (508, 512);
+VALUES (508, 12);
 
 -----------------------------------------------------
 -- Insert season data -------------------------------
