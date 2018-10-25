@@ -1,12 +1,10 @@
 package com.straus.controllers;
 
-import com.straus.beans.AppUser;
-import com.straus.beans.Map;
-import com.straus.beans.MapType;
-import com.straus.beans.Statistic;
+import com.straus.beans.*;
 import com.straus.services.AppUserService;
 import com.straus.services.MapService;
 import com.straus.services.MatchService;
+import com.straus.services.SeasonService;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -30,12 +28,14 @@ public class MapController {
 	private final MapService mapService;
 	private final MatchService matchService;
 	private final AppUserService appUserService;
+	private final SeasonService seasonService;
 
 	@Autowired
-	public MapController(MapService mapService, MatchService matchService, AppUserService appUserService) {
+	public MapController(MapService mapService, MatchService matchService, AppUserService appUserService, SeasonService seasonService) {
 		this.mapService = mapService;
 		this.matchService = matchService;
 		this.appUserService = appUserService;
+		this.seasonService = seasonService;
 	}
 
 	@GetMapping(value = "/all", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -95,49 +95,59 @@ public class MapController {
 		return new ResponseEntity<>(mapService.getCompMaps(), HttpStatus.OK);
 	}
 
-	@GetMapping(value = "/stats/type/{type}/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = "/stats/type/{type}/{userId}/{seasonId}", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ApiOperation(value = "A method to get statistics for a MapType", response = Statistic.class)
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Statistics successfully generated"),
 			@ApiResponse(code = 400, message = "MapType does not exist, could not parse"),
 			@ApiResponse(code = 404, message = "User not found")
 	})
-	public ResponseEntity<Statistic> getMapTypeStatistics(@PathVariable MapType type, @PathVariable int userId) {
+	public ResponseEntity<Statistic> getMapTypeStatistics(@PathVariable MapType type, @PathVariable int userId, @PathVariable int seasonId) {
 		AppUser tempUser = appUserService.getUserById(userId);
+		Season tempSeason = seasonService.getSeasonById(seasonId);
 		if (tempUser != null && !(tempUser.equals(new AppUser()))) {
-			Statistic stat = matchService.getMatchStatistics(matchService.getMatchByMapTypeAndUser(type, tempUser.getUserId()), type.toString());
-			if (type.equals(MapType.ARENA)) {
-				stat.setIconUrl("https://www.dropbox.com/s/lnpfxiq26ikpzfi/arcade.jpg?raw=1");
-			} else if (type.equals(MapType.ASSAULT)) {
-				stat.setIconUrl("https://i.imgur.com/CzzZpnS.png");
-			} else if (type.equals(MapType.CONTROL)) {
-				stat.setIconUrl("https://i.imgur.com/KQu7XOX.png");
-			} else if (type.equals(MapType.ESCORT)) {
-				stat.setIconUrl("https://i.imgur.com/NTgjGPB.png");
+			if (tempSeason != null && !(tempSeason.equals(new Season()))) {
+				Statistic stat = matchService.getMatchStatistics(matchService.getMatchByMapTypeAndUserInSeason(type, tempUser.getUserId(), tempSeason), type.toString());
+				if (type.equals(MapType.ARENA)) {
+					stat.setIconUrl("https://www.dropbox.com/s/lnpfxiq26ikpzfi/arcade.jpg?raw=1");
+				} else if (type.equals(MapType.ASSAULT)) {
+					stat.setIconUrl("https://i.imgur.com/CzzZpnS.png");
+				} else if (type.equals(MapType.CONTROL)) {
+					stat.setIconUrl("https://i.imgur.com/KQu7XOX.png");
+				} else if (type.equals(MapType.ESCORT)) {
+					stat.setIconUrl("https://i.imgur.com/NTgjGPB.png");
+				} else {
+					stat.setIconUrl("https://i.imgur.com/RpNDBXB.png");
+				}
+				return new ResponseEntity<>(stat, HttpStatus.OK);
 			} else {
-				stat.setIconUrl("https://i.imgur.com/RpNDBXB.png");
+				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			}
-			return new ResponseEntity<>(stat, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
 
-	@GetMapping(value = "/stats/{id}/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = "/stats/{id}/{userId}/{seasonId}", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ApiOperation(value = "A method to get statistics for a specific Map", response = Statistic.class)
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Statistics successfuly generated"),
 			@ApiResponse(code = 404, message = "Map not found"),
 			@ApiResponse(code = 404, message = "User not found")
 	})
-	public ResponseEntity<Statistic> getMapStatistics(@PathVariable int id, @PathVariable int userId) {
+	public ResponseEntity<Statistic> getMapStatistics(@PathVariable int id, @PathVariable int userId, @PathVariable int seasonId) {
 		Map tempMap = mapService.getMapById(id);
 		AppUser tempUser = appUserService.getUserById(userId);
+		Season tempSeason = seasonService.getSeasonById(seasonId);
 		if (tempMap != null && !(tempMap.equals(new Map()))) {
 			if (tempUser != null && !(tempUser.equals(new AppUser()))) {
-				Statistic stat = matchService.getMatchStatistics(matchService.getMatchByMapAndUser(tempMap, tempUser.getUserId()), tempMap.getName());
-				stat.setIconUrl(tempMap.getIconUrl());
-				return new ResponseEntity<>(stat, HttpStatus.OK);
+				if (tempSeason != null && !(tempSeason.equals(new Season()))) {
+					Statistic stat = matchService.getMatchStatistics(matchService.getMatchByMapAndUserInSeason(tempMap, tempUser.getUserId(), tempSeason), tempMap.getName());
+					stat.setIconUrl(tempMap.getIconUrl());
+					return new ResponseEntity<>(stat, HttpStatus.OK);
+				} else {
+					return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+				}
 			} else {
 				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			}

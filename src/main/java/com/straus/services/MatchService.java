@@ -56,43 +56,50 @@ public interface MatchService {
 	 * Method to get all matches for a specific result
 	 *
 	 * @param result Result to filter by (WIN, LOSS)
+	 * @param userId UserId to filter by
 	 * @return A list of matches for the specific result
 	 */
-	List<Match> getMatchByResult(Result result);
+	List<Match> getMatchByResultAndUserIdInSeason(Result result, int userId);
 
 	/**
-	 * Method to get all matches in which a specific hero was played
+	 * Method to get all matches in whi
+	 * ch a specific hero was played
 	 *
 	 * @param hero Hero to filter by
+	 * @param userId UserId to filter by
+	 * @param season Season to filter by
 	 * @return A list of matches containing the specific hero
 	 */
-	List<Match> getMatchByHero(Hero hero);
+	List<Match> getMatchByHeroAndUserIdInSeason(Hero hero, int userId, Season season);
 
 	/**
 	 * Method to get all matches played during a season
 	 *
 	 * @param season Season to filter by
+	 * @param userId UserId to filter by
 	 * @return A list of matches
 	 */
-	List<Match> getMatchBySeason(Season season);
+	List<Match> getMatchBySeasonAndUserId(Season season, int userId);
 
 	/**
 	 * Method to get all matches played on a specific map by a specific user
 	 *
 	 * @param map    Map to filter by
 	 * @param userId UserId to filter by
+	 * @param season Season to filter by   
 	 * @return A list of matches
 	 */
-	List<Match> getMatchByMapAndUser(Map map, int userId);
+	List<Match> getMatchByMapAndUserInSeason(Map map, int userId, Season season);
 
 	/**
 	 * Method to get all matches played on a specific MapType by a specific user
 	 *
 	 * @param mapType Type of map to filter by
 	 * @param userId  UserId to filter by
+	 * @param season Season to filter by
 	 * @return A list of matches
 	 */
-	List<Match> getMatchByMapTypeAndUser(MapType mapType, int userId);
+	List<Match> getMatchByMapTypeAndUserInSeason(MapType mapType, int userId, Season season);
 
 	/**
 	 * Method to get the most recent match a user played
