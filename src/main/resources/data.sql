@@ -157,54 +157,126 @@ VALUES (28,
 -----------------------------------------------------
 -- Insert Map list ----------------------------------
 -----------------------------------------------------
-INSERT INTO MAP
-VALUES (500, 'Hanamura', 'ASSAULT');
-INSERT INTO MAP
-VALUES (501, 'Horizon Lunar Colony', 'ASSAULT');
-INSERT INTO MAP
-VALUES (502, 'Temple of Anubis', 'ASSAULT');
-INSERT INTO MAP
-VALUES (503, 'Volskaya Industries', 'ASSAULT');
-INSERT INTO MAP
-VALUES (504, 'Dorado', 'ESCORT');
-INSERT INTO MAP
-VALUES (505, 'Junkertown', 'ESCORT');
-INSERT INTO MAP
-VALUES (506, 'Rialto', 'ESCORT');
-INSERT INTO MAP
-VALUES (507, 'Route 66', 'ESCORT');
-INSERT INTO MAP
-VALUES (508, 'Watchpoint: Gibraltar', 'ESCORT');
-INSERT INTO MAP
-VALUES (509, 'Blizzard World', 'HYBRID');
-INSERT INTO MAP
-VALUES (510, 'Eichenwalde', 'HYBRID');
-INSERT INTO MAP
-VALUES (511, 'Hollywood', 'HYBRID');
-INSERT INTO MAP
-VALUES (512, 'King''s Row', 'HYBRID');
-INSERT INTO MAP
-VALUES (513, 'Numbani', 'HYBRID');
-INSERT INTO MAP
-VALUES (514, 'Busan', 'CONTROL');
-INSERT INTO MAP
-VALUES (515, 'Ilios', 'CONTROL');
-INSERT INTO MAP
-VALUES (516, 'Lijiang Tower', 'CONTROL');
-INSERT INTO MAP
-VALUES (517, 'Nepal', 'CONTROL');
-INSERT INTO MAP
-VALUES (518, 'Oasis', 'CONTROL');
-INSERT INTO MAP
-VALUES (519, 'Ayutthaya', 'ARENA');
-INSERT INTO MAP
-VALUES (520, 'Black Forest', 'ARENA');
-INSERT INTO MAP
-VALUES (521, 'Castillo', 'ARENA');
-INSERT INTO MAP
-VALUES (522, 'Ecopoint: Antarctica', 'ARENA');
-INSERT INTO MAP
-VALUES (523, 'Necropolis', 'ARENA');
+INSERT INTO MAP (MAP_ID, NAME, TYPE, ICON_URL)
+VALUES (500,
+        'Hanamura',
+        'ASSAULT',
+        'https://vignette.wikia.nocookie.net/overwatch/images/d/dd/Hanamura_screenshot_21.png/revision/latest/scale-to-width-down/165?cb=20160626193608');
+INSERT INTO MAP (MAP_ID, NAME, TYPE, ICON_URL)
+VALUES (501,
+        'Horizon Lunar Colony',
+        'ASSAULT',
+        'https://vignette.wikia.nocookie.net/overwatch/images/b/b8/Horizon_screenshot_1.png/revision/latest/scale-to-width-down/165?cb=20170620220601');
+INSERT INTO MAP (MAP_ID, NAME, TYPE, ICON_URL)
+VALUES (502,
+        'Temple of Anubis',
+        'ASSAULT',
+        'https://vignette.wikia.nocookie.net/overwatch/images/1/12/Anubis_screenshot_4.png/revision/latest/scale-to-width-down/165?cb=20160628005051');
+INSERT INTO MAP (MAP_ID, NAME, TYPE, ICON_URL)
+VALUES (503,
+        'Volskaya Industries',
+        'ASSAULT',
+        'https://vignette.wikia.nocookie.net/overwatch/images/9/93/Volskaya_screenshot_13.png/revision/latest/scale-to-width-down/165?cb=20160704000922');
+INSERT INTO MAP (MAP_ID, NAME, TYPE, ICON_URL)
+VALUES (504,
+        'Dorado',
+        'ESCORT',
+        'https://vignette.wikia.nocookie.net/overwatch/images/5/51/Dorado_screenshot_9.png/revision/latest/scale-to-width-down/165?cb=20160630045807');
+INSERT INTO MAP (MAP_ID, NAME, TYPE, ICON_URL)
+VALUES (505,
+        'Junkertown',
+        'ESCORT',
+        'https://vignette.wikia.nocookie.net/overwatch/images/0/02/OVR_Junkertown_007.png/revision/latest/scale-to-width-down/165?cb=20170821174847');
+INSERT INTO MAP (MAP_ID, NAME, TYPE, ICON_URL)
+VALUES (506,
+        'Rialto',
+        'ESCORT',
+        'https://vignette.wikia.nocookie.net/overwatch/images/f/ff/Rialto.jpg/revision/latest/scale-to-width-down/165?cb=20180510203937');
+INSERT INTO MAP (MAP_ID, NAME, TYPE, ICON_URL)
+VALUES (507,
+        'Route 66',
+        'ESCORT',
+        'https://vignette.wikia.nocookie.net/overwatch/images/8/87/Route66_screenshot_1.png/revision/latest/scale-to-width-down/165?cb=20160708033615');
+INSERT INTO MAP (MAP_ID, NAME, TYPE, ICON_URL)
+VALUES (508,
+        'Watchpoint: Gibraltar',
+        'ESCORT',
+        'https://vignette.wikia.nocookie.net/overwatch/images/7/73/Gibraltar_screenshot_1.png/revision/latest/scale-to-width-down/165?cb=20160710225230');
+INSERT INTO MAP (MAP_ID, NAME, TYPE, ICON_URL)
+VALUES (509,
+        'Blizzard World',
+        'HYBRID',
+        'https://vignette.wikia.nocookie.net/overwatch/images/8/8d/Overwatch_BlizzardWorld_000_png_jpgcopy.jpg/revision/latest/scale-to-width-down/165?cb=20171103212134');
+INSERT INTO MAP (MAP_ID, NAME, TYPE, ICON_URL)
+VALUES (510,
+        'Eichenwalde',
+        'HYBRID',
+        'https://vignette.wikia.nocookie.net/overwatch/images/5/5e/Eichenwalde_sreenshot_1.png/revision/latest/scale-to-width-down/165?cb=20160823041053');
+INSERT INTO MAP (MAP_ID, NAME, TYPE, ICON_URL)
+VALUES (511,
+        'Hollywood',
+        'HYBRID',
+        'https://vignette.wikia.nocookie.net/overwatch/images/9/98/Hollywood_screenshot_4.jpg/revision/latest/scale-to-width-down/165?cb=20160605011629');
+INSERT INTO MAP (MAP_ID, NAME, TYPE, ICON_URL)
+VALUES (512,
+        'King''s Row',
+        'HYBRID',
+        'https://vignette.wikia.nocookie.net/overwatch/images/2/21/Kingsrow_screenshot_8.png/revision/latest/scale-to-width-down/165?cb=20160711195544');
+INSERT INTO MAP (MAP_ID, NAME, TYPE, ICON_URL)
+VALUES (513,
+        'Numbani',
+        'HYBRID',
+        'https://vignette.wikia.nocookie.net/overwatch/images/e/eb/Numbani_screenshot_5.jpg/revision/latest/scale-to-width-down/165?cb=20160504022045');
+INSERT INTO MAP (MAP_ID, NAME, TYPE, ICON_URL)
+VALUES (514,
+        'Busan',
+        'CONTROL',
+        'https://vignette.wikia.nocookie.net/overwatch/images/6/6f/Busan_screenshot_1.png/revision/latest/scale-to-width-down/165?cb=20180822153609');
+INSERT INTO MAP (MAP_ID, NAME, TYPE, ICON_URL)
+VALUES (515,
+        'Ilios',
+        'CONTROL',
+        'https://vignette.wikia.nocookie.net/overwatch/images/7/7d/Ilios_screenshot_1.png/revision/latest/scale-to-width-down/165?cb=20160712060605');
+INSERT INTO MAP (MAP_ID, NAME, TYPE, ICON_URL)
+VALUES (516,
+        'Lijiang Tower',
+        'CONTROL',
+        'https://vignette.wikia.nocookie.net/overwatch/images/e/ed/Lijiang_screenshot_34.jpg/revision/latest/scale-to-width-down/165?cb=20160711182404');
+INSERT INTO MAP (MAP_ID, NAME, TYPE, ICON_URL)
+VALUES (517,
+        'Nepal',
+        'CONTROL',
+        'https://vignette.wikia.nocookie.net/overwatch/images/7/7a/Nepal_screenshot_1.png/revision/latest/scale-to-width-down/165?cb=20160711235021');
+INSERT INTO MAP (MAP_ID, NAME, TYPE, ICON_URL)
+VALUES (518,
+        'Oasis',
+        'CONTROL',
+        'https://vignette.wikia.nocookie.net/overwatch/images/7/70/Oasis_screenshot_first.png/revision/latest/scale-to-width-down/165?cb=20161203031638');
+INSERT INTO MAP (MAP_ID, NAME, TYPE, ICON_URL)
+VALUES (519,
+        'Ayutthaya',
+        'ARENA',
+        'https://vignette.wikia.nocookie.net/overwatch/images/0/00/Ayutthaya_screenshot_1.png/revision/latest/scale-to-width-down/165?cb=20180209123247');
+INSERT INTO MAP (MAP_ID, NAME, TYPE, ICON_URL)
+VALUES (520,
+        'Black Forest',
+        'ARENA',
+        'https://vignette.wikia.nocookie.net/overwatch/images/b/b4/Blackforest_screenshot_1.png/revision/latest/scale-to-width-down/165?cb=20170524021255');
+INSERT INTO MAP (MAP_ID, NAME, TYPE, ICON_URL)
+VALUES (521,
+        'Castillo',
+        'ARENA',
+        'https://vignette.wikia.nocookie.net/overwatch/images/4/46/Castillo_screenshot_1.png/revision/latest/scale-to-width-down/165?cb=20170524022946');
+INSERT INTO MAP (MAP_ID, NAME, TYPE, ICON_URL)
+VALUES (522,
+        'Ecopoint: Antarctica',
+        'ARENA',
+        'https://vignette.wikia.nocookie.net/overwatch/images/b/b8/Antarctica_screenshot_1.png/revision/latest/scale-to-width-down/165?cb=20161123001301');
+INSERT INTO MAP (MAP_ID, NAME, TYPE, ICON_URL)
+VALUES (523,
+        'Necropolis',
+        'ARENA',
+        'https://vignette.wikia.nocookie.net/overwatch/images/4/40/Necropolis_screenshot_1.png/revision/latest/scale-to-width-down/165?cb=20170524023228');
 
 -----------------------------------------------------
 -- Insert match data --------------------------------

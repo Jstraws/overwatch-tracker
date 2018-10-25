@@ -1,8 +1,6 @@
 package com.straus.repositories;
 
-import com.straus.beans.Hero;
-import com.straus.beans.Match;
-import com.straus.beans.Result;
+import com.straus.beans.*;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -51,4 +49,22 @@ public interface MatchRepository extends JpaRepository<Match, Integer> {
 	 * @return A single match
 	 */
 	Match findFirstByAppUserUserIdOrderByMatchDateDesc(int userId);
+
+	/**
+	 * Method to get all matches played on a specific map by a specific user
+	 *
+	 * @param map    Map to filter by
+	 * @param userId UserId to filter by
+	 * @return A list of matches
+	 */
+	List<Match> findAllByMapAndAppUserUserIdOrderByMatchDateDesc(Map map, int userId);
+
+	/**
+	 * Method to get all matches played on a specific MapType by a specific user
+	 *
+	 * @param mapType Type of map to filter by
+	 * @param userId  UserId to filter by
+	 * @return A list of matches
+	 */
+	List<Match> findAllByMapTypeAndAppUserUserIdOrderByMatchDateDesc(MapType mapType, int userId);
 }

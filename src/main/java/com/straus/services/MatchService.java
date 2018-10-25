@@ -1,9 +1,6 @@
 package com.straus.services;
 
-import com.straus.beans.Hero;
-import com.straus.beans.Match;
-import com.straus.beans.Result;
-import com.straus.beans.Season;
+import com.straus.beans.*;
 import io.swagger.annotations.ApiModel;
 
 import java.util.List;
@@ -80,10 +77,37 @@ public interface MatchService {
 	List<Match> getMatchBySeason(Season season);
 
 	/**
+	 * Method to get all matches played on a specific map by a specific user
+	 *
+	 * @param map    Map to filter by
+	 * @param userId UserId to filter by
+	 * @return A list of matches
+	 */
+	List<Match> getMatchByMapAndUser(Map map, int userId);
+
+	/**
+	 * Method to get all matches played on a specific MapType by a specific user
+	 *
+	 * @param mapType Type of map to filter by
+	 * @param userId  UserId to filter by
+	 * @return A list of matches
+	 */
+	List<Match> getMatchByMapTypeAndUser(MapType mapType, int userId);
+
+	/**
 	 * Method to get the most recent match a user played
 	 *
 	 * @param userId User id to filter by
 	 * @return A single match
 	 */
 	Match getUsersMostRecentMatch(int userId);
+
+	/**
+	 * Method to calculate statistics for a given set of matches
+	 *
+	 * @param matches List of matches to calculate stats off of
+	 * @param name    Name of the statistic being caluclated
+	 * @return A Statistic with all of the relevant information
+	 */
+	Statistic getMatchStatistics(List<Match> matches, String name);
 }

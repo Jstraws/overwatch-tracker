@@ -25,12 +25,17 @@ public class Map {
 	@ApiModelProperty(value = "Type of the map")
 	private MapType type;
 
-	public Map(String name, MapType type) {
-		this.name = name;
-		this.type = type;
-	}
+	@Column(name = "ICON_URL")
+	@ApiModelProperty(value = "Icon for the Map")
+	private String iconUrl;
 
 	public Map() {
+	}
+
+	public Map(String name, MapType type, String iconUrl) {
+		this.name = name;
+		this.type = type;
+		this.iconUrl = iconUrl;
 	}
 
 	public int getMapId() {
@@ -57,6 +62,14 @@ public class Map {
 		this.type = type;
 	}
 
+	public String getIconUrl() {
+		return iconUrl;
+	}
+
+	public void setIconUrl(String iconUrl) {
+		this.iconUrl = iconUrl;
+	}
+
 	@Override
 	public boolean equals(Object o) {
 		if (this == o) return true;
@@ -64,12 +77,13 @@ public class Map {
 		Map map = (Map) o;
 		return getMapId() == map.getMapId() &&
 				Objects.equals(getName(), map.getName()) &&
-				getType() == map.getType();
+				getType() == map.getType() &&
+				Objects.equals(getIconUrl(), map.getIconUrl());
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(getMapId(), getName(), getType());
+		return Objects.hash(getMapId(), getName(), getType(), getIconUrl());
 	}
 
 	@Override
@@ -78,6 +92,7 @@ public class Map {
 				"mapId=" + mapId +
 				", name='" + name + '\'' +
 				", type=" + type +
+				", iconUrl='" + iconUrl + '\'' +
 				'}';
 	}
 }

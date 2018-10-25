@@ -1,9 +1,6 @@
 package com.straus.services;
 
-import com.straus.beans.Hero;
-import com.straus.beans.Match;
-import com.straus.beans.Result;
-import com.straus.beans.Season;
+import com.straus.beans.*;
 import com.straus.repositories.MatchRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -125,5 +122,54 @@ public class MatchServiceImpl implements MatchService {
 	@Override
 	public Match getUsersMostRecentMatch(int userId) {
 		return matchRepository.findFirstByAppUserUserIdOrderByMatchDateDesc(userId);
+	}
+
+	/**
+	 * Method to get all matches played on a specific map by a specific user
+	 *
+	 * @param map    Map to filter by
+	 * @param userId UserId to filter by
+	 * @return A list of matches
+	 */
+	@Override
+	public List<Match> getMatchByMapAndUser(Map map, int userId) {
+		return matchRepository.findAllByMapAndAppUserUserIdOrderByMatchDateDesc(map, userId);
+	}
+
+	/**
+	 * Method to get all matches played on a specific MapType by a specific user
+	 *
+	 * @param mapType Type of map to filter by
+	 * @param userId  UserId to filter by
+	 * @return A list of matches
+	 */
+	@Override
+	public List<Match> getMatchByMapTypeAndUser(MapType mapType, int userId) {
+		return matchRepository.findAllByMapTypeAndAppUserUserIdOrderByMatchDateDesc(mapType, userId);
+	}
+
+	/**
+	 * Method to calculate statistics for a given set of matches
+	 *
+	 * @param matches List of matches to calculate stats off of
+	 * @param name    Name of statistic being caluclated
+	 * @return A Statistic with all of the relevant information
+	 */
+	@Override
+	public Statistic getMatchStatistics(List<Match> matches, String name) {
+		Statistic statistic = new Statistic(name);
+		for (Match m : matches) {
+			if (m.getResult().equals(Result.WIN)) {
+				statistic.addWin();
+			} else if (m.getResult().equals(Result.LOSS)) {
+				statistic.addLoss();
+			} else {
+				statistic.addDraw();
+			}
+
+			statistic.addSr(m.getRankDifference());
+		}
+
+		return statistic;
 	}
 }
