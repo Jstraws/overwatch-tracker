@@ -2,6 +2,7 @@ package com.straus.services;
 
 import com.straus.beans.AppUser;
 import com.straus.repositories.AppUserRepository;
+import org.apache.commons.text.WordUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -65,7 +66,14 @@ public class AppUserServiceImpl implements AppUserService {
 	@Override
 	public AppUser createUser(AppUser user) {
 		if (user != null && !(user.equals(new AppUser()))) {
-			return appUserRepository.save(user);
+			if (appUserRepository.findAppUserByUserNameAndPassword(user.getUserName(), user.getPassword()) == null) {
+				user.setUserName(user.getUserName().toLowerCase());
+				user.setFirstName(WordUtils.capitalize(user.getFirstName()));
+				user.setLastName(WordUtils.capitalize(user.getLastName()));
+				return appUserRepository.save(user);
+			} else {
+				return null;
+			}
 		} else {
 			return null;
 		}

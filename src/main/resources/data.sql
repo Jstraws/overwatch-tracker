@@ -1,14 +1,16 @@
+-- noinspection SqlNoDataSourceInspectionForFile
+
 -----------------------------------------------------
 -- Insert basic user data ---------------------------
 -----------------------------------------------------
-INSERT INTO APP_USER (USER_ID, FIRST_NAME, LAST_NAME, USERNAME, PASSWORD, RANK)
-VALUES (500, 'Jeremy', 'Straus', 'jstraus', -1146911805, 3000);
-INSERT INTO APP_USER (USER_ID, FIRST_NAME, LAST_NAME, USERNAME, PASSWORD, RANK)
-VALUES (501, 'Alan', 'Sato', 'asato', -1146911805, 3000);
-INSERT INTO APP_USER (USER_ID, FIRST_NAME, LAST_NAME, USERNAME, PASSWORD, RANK)
-VALUES (502, 'Molly', 'Merritt', 'mmerritt', -1146911805, 3000);
-INSERT INTO APP_USER (USER_ID, FIRST_NAME, LAST_NAME, USERNAME, PASSWORD, RANK)
-VALUES (503, 'Rishabh', 'Ranah', 'rranah', -1146911805, 3000);
+INSERT INTO APP_USER (USER_ID, FIRST_NAME, LAST_NAME, USERNAME, PASSWORD)
+VALUES (500, 'Jeremy', 'Straus', 'jstraus', -1146911805);
+INSERT INTO APP_USER (USER_ID, FIRST_NAME, LAST_NAME, USERNAME, PASSWORD)
+VALUES (501, 'Alan', 'Sato', 'asato', -1146911805);
+INSERT INTO APP_USER (USER_ID, FIRST_NAME, LAST_NAME, USERNAME, PASSWORD)
+VALUES (502, 'Molly', 'Merritt', 'mmerritt', -1146911805);
+INSERT INTO APP_USER (USER_ID, FIRST_NAME, LAST_NAME, USERNAME, PASSWORD)
+VALUES (503, 'Rishabh', 'Ranah', 'rranah', -1146911805);
 
 -----------------------------------------------------
 -- Insert hero list ---------------------------------

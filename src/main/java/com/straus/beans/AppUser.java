@@ -33,10 +33,6 @@ public class AppUser {
 	@ApiModelProperty(value = "Password of the user")
 	private int password;
 
-	@Column(name = "RANK")
-	@ApiModelProperty(value = "Current sr of the user")
-	private int rank;
-
 	public AppUser(String firstName, String lastName, String userName, String password) {
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -47,12 +43,11 @@ public class AppUser {
 	public AppUser() {
 	}
 
-	public AppUser(String firstName, String lastName, String userName, int password, int rank) {
+	public AppUser(String firstName, String lastName, String userName, int password) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.userName = userName;
 		this.password = password;
-		this.rank = rank;
 	}
 
 	public int getUserId() {
@@ -95,12 +90,8 @@ public class AppUser {
 		this.password = password;
 	}
 
-	public int getRank() {
-		return rank;
-	}
-
-	public void setRank(int rank) {
-		this.rank = rank;
+	public void setPassword(String password) {
+		this.password = password.hashCode();
 	}
 
 	@Override
@@ -110,7 +101,6 @@ public class AppUser {
 		AppUser appUser = (AppUser) o;
 		return getUserId() == appUser.getUserId() &&
 				getPassword() == appUser.getPassword() &&
-				getRank() == appUser.getRank() &&
 				Objects.equals(getFirstName(), appUser.getFirstName()) &&
 				Objects.equals(getLastName(), appUser.getLastName()) &&
 				Objects.equals(getUserName(), appUser.getUserName());
@@ -118,7 +108,7 @@ public class AppUser {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(getUserId(), getFirstName(), getLastName(), getUserName(), getPassword(), getRank());
+		return Objects.hash(getUserId(), getFirstName(), getLastName(), getUserName(), getPassword());
 	}
 
 	@Override
@@ -129,7 +119,6 @@ public class AppUser {
 				", lastName='" + lastName + '\'' +
 				", userName='" + userName + '\'' +
 				", password=" + password +
-				", rank=" + rank +
 				'}';
 	}
 }

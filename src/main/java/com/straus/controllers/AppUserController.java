@@ -54,9 +54,10 @@ public class AppUserController {
 	@ApiOperation(value = "Add a new user to the system", response = AppUser.class)
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Successfully created new user"),
-			@ApiResponse(code = 403, message = "Bad request, user not added")
+			@ApiResponse(code = 400, message = "Bad request, user not added")
 	})
 	public ResponseEntity<AppUser> createUser(@Valid @RequestBody AppUser appUser) {
+		System.out.println(appUser);
 		AppUser tempUser = appUserService.createUser(appUser);
 		if (tempUser != null) {
 			return new ResponseEntity<>(tempUser, HttpStatus.OK);
