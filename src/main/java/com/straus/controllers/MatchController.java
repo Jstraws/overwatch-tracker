@@ -84,4 +84,19 @@ public class MatchController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
+
+	@DeleteMapping(value = "", consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ApiOperation(value = "A method to delete a match")
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "Successfully delete match"),
+			@ApiResponse(code = 404, message = "Match not found")
+	})
+	public ResponseEntity<String> deleteMatchById(@RequestBody Match match) {
+		try {
+			matchService.deleteMatch(match.getMatchId());
+			return new ResponseEntity<>(HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
 }
