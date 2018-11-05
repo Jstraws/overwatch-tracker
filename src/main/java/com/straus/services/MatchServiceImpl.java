@@ -116,8 +116,13 @@ public class MatchServiceImpl implements MatchService {
 	public Match getUsersMostRecentMatch(int userId) {
 		Match tempMatch = matchRepository.findFirstByAppUserUserIdOrderByMatchDateDesc(userId);
 		Season currentSeason = seasonService.getCurrentSeason();
-		if (tempMatch.getMatchDate().after(currentSeason.getStartDate()) && tempMatch.getMatchDate().before(currentSeason.getEndDate())) {
-			return tempMatch;
+		System.out.println(currentSeason);
+		if (tempMatch != null) {
+			if (tempMatch.getMatchDate().after(currentSeason.getStartDate()) && tempMatch.getMatchDate().before(currentSeason.getEndDate())) {
+				return tempMatch;
+			} else {
+				return null;
+			}
 		} else {
 			return null;
 		}

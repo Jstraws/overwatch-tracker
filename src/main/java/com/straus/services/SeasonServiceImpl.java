@@ -79,6 +79,6 @@ public class SeasonServiceImpl implements SeasonService {
 	 */
 	@Override
 	public Season getCurrentSeason() {
-		return seasonRepository.findByEndDateAfter(Timestamp.from(Instant.now()));
+		return seasonRepository.findFirstByEndDateAfterAndNameNot(Timestamp.from(Instant.now()), "Any");
 	}
 }

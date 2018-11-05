@@ -8,5 +8,5 @@ import java.sql.Timestamp;
 
 @Repository
 public interface SeasonRepository extends JpaRepository<Season, Integer> {
-	Season findByEndDateAfter(Timestamp currentDate);
+	Season findFirstByEndDateAfterAndNameNot(Timestamp currentDate, String name);
 }
