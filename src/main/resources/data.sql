@@ -283,7 +283,6 @@ VALUES (523,
 -----------------------------------------------------
 -- Insert match data --------------------------------
 -----------------------------------------------------
-
 INSERT INTO MATCH (MATCH_ID, RESULT, MAP_ID, MATCH_DATE, RANK, RANK_DIFFERENCE, APP_USER_ID)
 VALUES (500, 'WIN', 500, TO_DATE('2018-01-05 09:40', 'YYYY-MM-DD HH24:MI'), 3000, 0, 500);
 INSERT INTO MATCH (MATCH_ID, RESULT, MAP_ID, MATCH_DATE, RANK, RANK_DIFFERENCE, APP_USER_ID)
@@ -308,8 +307,6 @@ VALUES (509, 'LOSS', 509, TO_DATE('2018-09-13 10:51', 'YYYY-MM-DD HH24:MI'), 304
 -----------------------------------------------------
 -- Insert Match/Hero data ---------------------------
 -----------------------------------------------------
-
-
 INSERT INTO MATCH_HERO (MATCH_ID, HERO_ID)
 VALUES (501, 22);
 INSERT INTO MATCH_HERO (MATCH_ID, HERO_ID)
@@ -382,3 +379,5 @@ INSERT INTO SEASON (SEASON_ID, NAME, START_DATE, END_DATE)
 VALUES (510, 'Season 11', TO_DATE('2018-07-02', 'YYYY-MM-DD'), TO_DATE('2018-08-28', 'YYYY-MM-DD'));
 INSERT INTO SEASON (SEASON_ID, NAME, START_DATE, END_DATE)
 VALUES (511, 'Season 12', TO_DATE('2018-08-31', 'YYYY-MM-DD'), TO_DATE('2018-10-28', 'YYYY-MM-DD'));
+INSERT INTO SEASON (SEASON_ID, NAME, START_DATE, END_DATE)
+VALUES (512, 'Season 13', TO_DATE('2018-10-31', 'YYYY-MM-DD') TO_DATE('2018-12-28', 'YYYY-MM-DD'))

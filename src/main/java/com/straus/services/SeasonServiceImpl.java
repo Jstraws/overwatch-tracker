@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.List;
 
 @Service
@@ -68,5 +70,15 @@ public class SeasonServiceImpl implements SeasonService {
 	@Override
 	public void deleteSeason(int seasonId) {
 		seasonRepository.deleteById(seasonId);
+	}
+
+	/**
+	 * Method to get the current Season
+	 *
+	 * @return Season that is currently happening
+	 */
+	@Override
+	public Season getCurrentSeason() {
+		return seasonRepository.findByEndDateAfter(Timestamp.from(Instant.now()));
 	}
 }

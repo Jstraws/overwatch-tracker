@@ -43,4 +43,11 @@ public interface SeasonService {
 	 * @param seasonId Id of the season to delete
 	 */
 	void deleteSeason(int seasonId);
+
+	/**
+	 * Method to get the current Season
+	 *
+	 * @return Season that is currently happening
+	 */
+	Season getCurrentSeason();
 }
