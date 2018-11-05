@@ -85,15 +85,15 @@ public class MatchController {
 		}
 	}
 
-	@DeleteMapping(value = "", consumes = MediaType.APPLICATION_JSON_VALUE)
+	@DeleteMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ApiOperation(value = "A method to delete a match")
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Successfully delete match"),
 			@ApiResponse(code = 404, message = "Match not found")
 	})
-	public ResponseEntity<String> deleteMatchById(@RequestBody Match match) {
+	public ResponseEntity<String> deleteMatchById(@PathVariable int id) {
 		try {
-			matchService.deleteMatch(match.getMatchId());
+			matchService.deleteMatch(id);
 			return new ResponseEntity<>(HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
