@@ -85,7 +85,7 @@ public class MatchController {
 		}
 	}
 
-	@DeleteMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+	@DeleteMapping(value = "/{id}")
 	@ApiOperation(value = "A method to delete a match")
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Successfully delete match"),
