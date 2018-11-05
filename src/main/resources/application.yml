@@ -2,16 +2,16 @@ spring:
   application:
     name: overwatch-tracker
 
-  datasource:
-    url: jdbc:h2:mem:mydb
-    driver-class-name: org.h2.Driver
-
-  jpa:
-    hibernate:
-      ddl-auto: create-drop
-  h2:
-    console:
-      enabled: true
+  #  datasource:
+  #    url: jdbc:h2:mem:mydb
+  #    driver-class-name: org.h2.Driver
+  #
+  #  jpa:
+  #    hibernate:
+  #      ddl-auto: create-drop
+  #  h2:
+  #    console:
+  #      enabled: true
 
   security:
     user:
