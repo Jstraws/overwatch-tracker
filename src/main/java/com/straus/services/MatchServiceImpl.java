@@ -27,7 +27,7 @@ public class MatchServiceImpl implements MatchService {
 	 */
 	@Override
 	public Match getMatchById(int matchId) {
-		return matchRepository.findById(matchId).orElse(new Match());
+		return matchRepository.findById(matchId).orElse(null);
 	}
 
 	/**
@@ -47,18 +47,8 @@ public class MatchServiceImpl implements MatchService {
 	 * @return The match object, with the auto-generated id
 	 */
 	@Override
-	public Match createMatch(Match match) {
+	public Match saveMatch(Match match) {
 		return matchRepository.save(match);
-	}
-
-	/**
-	 * Method to update a match in the system
-	 *
-	 * @param match Match object to update
-	 */
-	@Override
-	public void updateMatch(Match match) {
-		matchRepository.save(match);
 	}
 
 	/**

@@ -25,7 +25,7 @@ public class HeroServiceImpl implements HeroService {
 	 */
 	@Override
 	public Hero getHeroById(int heroId) {
-		return heroRepository.findById(heroId).orElse(new Hero());
+		return heroRepository.findById(heroId).orElse(null);
 	}
 
 	/**

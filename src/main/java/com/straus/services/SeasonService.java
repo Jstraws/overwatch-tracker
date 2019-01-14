@@ -1,6 +1,7 @@
 package com.straus.services;
 
 import com.straus.beans.Season;
+import com.straus.beans.Statistic;
 import io.swagger.annotations.ApiModel;
 
 import java.util.List;
@@ -43,6 +44,15 @@ public interface SeasonService {
 	 * @param seasonId Id of the season to delete
 	 */
 	void deleteSeason(int seasonId);
+
+	/**
+	 * Method to create statistics for a user's season
+	 *
+	 * @param season the season to filter by
+	 * @param userId the user to filter by
+	 * @return the statistic for the season
+	 */
+	Statistic getSeasonStatistics(Season season, int userId);
 
 	/**
 	 * Method to get the current Season

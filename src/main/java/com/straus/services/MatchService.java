@@ -28,14 +28,7 @@ public interface MatchService {
 	 * @param match New match object to persist
 	 * @return The match object, with the auto-generated id
 	 */
-	Match createMatch(Match match);
-
-	/**
-	 * Method to update a match in the system
-	 *
-	 * @param match Match object to update
-	 */
-	void updateMatch(Match match);
+	Match saveMatch(Match match);
 
 	/**
 	 * Method to remove a match from the system

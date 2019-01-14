@@ -64,7 +64,7 @@ public class MatchController {
 	})
 	public ResponseEntity<Match> addNewMatch(@Valid @RequestBody Match match) {
 		try {
-			return new ResponseEntity<>(matchService.createMatch(match), HttpStatus.OK);
+            return new ResponseEntity<>(matchService.saveMatch(match), HttpStatus.OK);
 		} catch (Exception e) {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
@@ -84,6 +84,20 @@ public class MatchController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
+
+    @PostMapping(value = "/update", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ApiOperation(value = "A method to update a match", response = Match.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successfully updated match"),
+            @ApiResponse(code = 401, message = "Bad data, match not updated")
+    })
+    public ResponseEntity<Match> updateMatch(@Valid @RequestBody Match match) {
+        try {
+            return new ResponseEntity<>(matchService.saveMatch(match), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
 
 	@DeleteMapping(value = "/{id}")
 	@ApiOperation(value = "A method to delete a match")

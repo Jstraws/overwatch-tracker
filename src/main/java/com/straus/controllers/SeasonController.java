@@ -1,6 +1,7 @@
 package com.straus.controllers;
 
 import com.straus.beans.Season;
+import com.straus.beans.Statistic;
 import com.straus.services.SeasonService;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiOperation;
@@ -49,5 +50,25 @@ public class SeasonController {
 	})
 	public ResponseEntity<List<Season>> getAllSeasons() {
 		return new ResponseEntity<>(seasonService.getAllSeasons(), HttpStatus.OK);
+	}
+
+	@GetMapping(value = "/stats/{userId}/{seasonId}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@ApiOperation(value = "A method to retrieve statistics for a user within an entire season", response = Statistic.class)
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "Statistics retrieved"),
+			@ApiResponse(code = 401, message = "Bad request, ids do not exist")
+	})
+	public ResponseEntity<Statistic> getSeasonStats(@PathVariable int userId, @PathVariable int seasonId) {
+		Season tempSeason = seasonService.getSeasonById(seasonId);
+		if (tempSeason != null) {
+			try {
+				return new ResponseEntity<>(seasonService.getSeasonStatistics(tempSeason, userId), HttpStatus.OK);
+			} catch (Exception e) {
+				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			}
+
+		} else {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
 	}
 }

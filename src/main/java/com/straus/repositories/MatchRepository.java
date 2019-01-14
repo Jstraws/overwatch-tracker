@@ -41,7 +41,8 @@ public interface MatchRepository extends JpaRepository<Match, Integer> {
 	 *
 	 * @param startDate Earliest date match could have been played
 	 * @param endDate   Latest date match could have been played
-	 * @return A list of matches
+     * @param userId    The user who played the match
+     * @return A list of matches
 	 */
 	List<Match> findAllByMatchDateBetweenAndAppUserUserIdOrderByMatchDateDesc(Timestamp startDate, Timestamp endDate, int userId);
 

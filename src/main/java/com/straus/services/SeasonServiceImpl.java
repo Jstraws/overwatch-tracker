@@ -1,6 +1,10 @@
 package com.straus.services;
 
+import com.straus.beans.Match;
+import com.straus.beans.Result;
 import com.straus.beans.Season;
+import com.straus.beans.Statistic;
+import com.straus.repositories.MatchRepository;
 import com.straus.repositories.SeasonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -15,9 +19,12 @@ public class SeasonServiceImpl implements SeasonService {
 
 	private final SeasonRepository seasonRepository;
 
+	private final MatchRepository matchRepository;
+
 	@Autowired
-	public SeasonServiceImpl(SeasonRepository seasonRepository) {
+	public SeasonServiceImpl(SeasonRepository seasonRepository, MatchRepository matchRepository) {
 		this.seasonRepository = seasonRepository;
+		this.matchRepository = matchRepository;
 	}
 
 	/**
@@ -28,7 +35,7 @@ public class SeasonServiceImpl implements SeasonService {
 	 */
 	@Override
 	public Season getSeasonById(int seasonId) {
-		return seasonRepository.findById(seasonId).orElse(new Season());
+		return seasonRepository.findById(seasonId).orElse(null);
 	}
 
 	/**
@@ -70,6 +77,32 @@ public class SeasonServiceImpl implements SeasonService {
 	@Override
 	public void deleteSeason(int seasonId) {
 		seasonRepository.deleteById(seasonId);
+	}
+
+	/**
+	 * Method to create statistics for a user's season
+	 *
+	 * @param season the season to filter by
+	 * @param userId the user to filter by
+	 * @return the statistic for the season
+	 */
+	@Override
+	public Statistic getSeasonStatistics(Season season, int userId) {
+		Statistic statistic = new Statistic(season.getName());
+		List<Match> matches = matchRepository.findAllByMatchDateBetweenAndAppUserUserIdOrderByMatchDateDesc(season.getStartDate(), season.getEndDate(), userId);
+
+		for (Match match : matches) {
+			if (match.getResult().equals(Result.WIN)) {
+				statistic.addWin();
+			} else if (match.getResult().equals(Result.DRAW)) {
+				statistic.addDraw();
+			} else {
+				statistic.addLoss();
+			}
+			statistic.addSr(match.getRankDifference());
+		}
+
+		return statistic;
 	}
 
 	/**

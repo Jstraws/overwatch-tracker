@@ -28,7 +28,7 @@ public class AppUserServiceImpl implements AppUserService {
 	 */
 	@Override
 	public AppUser getUserById(int userId) {
-		return appUserRepository.findById(userId).orElse(new AppUser());
+		return appUserRepository.findById(userId).orElse(null);
 	}
 
 	/**
