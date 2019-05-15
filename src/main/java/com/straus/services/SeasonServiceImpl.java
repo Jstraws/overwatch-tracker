@@ -94,7 +94,6 @@ public class SeasonServiceImpl implements SeasonService {
 
 		for (Match match : matches) {
 			calculateStat(match, statistic);
-			statistic.addSr(match.getRankDifference());
 			for (Hero hero : match.getHeroes()) {
 				if (heroStats.containsKey(hero.getName())) {
 					Statistic tempStat = heroStats.get(hero.getName());
@@ -102,6 +101,7 @@ public class SeasonServiceImpl implements SeasonService {
 					heroStats.put(hero.getName(), tempStat);
 				} else {
 					Statistic tempStat = new Statistic(hero.getName());
+                    statistic.setIconUrl(hero.getHeroUrl());
 					calculateStat(match, tempStat);
 					heroStats.put(hero.getName(), tempStat);
 				}
@@ -130,5 +130,6 @@ public class SeasonServiceImpl implements SeasonService {
 		} else {
 			statistic.addLoss();
 		}
+        statistic.addSr(match.getRankDifference());
 	}
 }
