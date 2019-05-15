@@ -1,9 +1,6 @@
 package com.straus.services;
 
-import com.straus.beans.Match;
-import com.straus.beans.Result;
-import com.straus.beans.Season;
-import com.straus.beans.Statistic;
+import com.straus.beans.*;
 import com.straus.repositories.MatchRepository;
 import com.straus.repositories.SeasonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +10,8 @@ import org.springframework.stereotype.Service;
 import java.sql.Timestamp;
 import java.time.Instant;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 @Service
 public class SeasonServiceImpl implements SeasonService {
@@ -88,18 +87,24 @@ public class SeasonServiceImpl implements SeasonService {
 	 */
 	@Override
 	public Statistic getSeasonStatistics(Season season, int userId) {
-		Statistic statistic = new Statistic(season.getName());
+		SeasonStatistic statistic = new SeasonStatistic(season.getName());
 		List<Match> matches = matchRepository.findAllByMatchDateBetweenAndAppUserUserIdOrderByMatchDateDesc(season.getStartDate(), season.getEndDate(), userId);
+		Map<String, Statistic> heroStats = new TreeMap<>();
 
 		for (Match match : matches) {
-			if (match.getResult().equals(Result.WIN)) {
-				statistic.addWin();
-			} else if (match.getResult().equals(Result.DRAW)) {
-				statistic.addDraw();
-			} else {
-				statistic.addLoss();
-			}
+			calculateStat(match, statistic);
 			statistic.addSr(match.getRankDifference());
+			for (Hero hero : match.getHeroes()) {
+				if (heroStats.containsKey(hero.getName())) {
+					Statistic tempStat = heroStats.get(hero.getName());
+					calculateStat(match, tempStat);
+					heroStats.put(hero.getName(), tempStat);
+				} else {
+					Statistic tempStat = new Statistic(hero.getName());
+					calculateStat(match, tempStat);
+					heroStats.put(hero.getName(), tempStat);
+				}
+			}
 		}
 
 		return statistic;
@@ -113,5 +118,15 @@ public class SeasonServiceImpl implements SeasonService {
 	@Override
 	public Season getCurrentSeason() {
 		return seasonRepository.findFirstByEndDateAfterAndNameNot(Timestamp.from(Instant.now()), "Any");
+	}
+
+	private void calculateStat(Match match, Statistic statistic) {
+		if (match.getResult().equals(Result.WIN)) {
+			statistic.addWin();
+		} else if (match.getResult().equals(Result.DRAW)) {
+			statistic.addDraw();
+		} else {
+			statistic.addLoss();
+		}
 	}
 }

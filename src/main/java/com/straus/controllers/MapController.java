@@ -39,24 +39,24 @@ public class MapController {
 	}
 
 	@GetMapping(value = "/all", produces = MediaType.APPLICATION_JSON_VALUE)
-	@ApiOperation(value = "A method to get all maps within the system", response = Map.class, responseContainer = "List")
+    @ApiOperation(value = "A method to get all maps within the system", response = GameMap.class, responseContainer = "List")
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Successfully retrieved all maps")
 	})
-	public ResponseEntity<List<Map>> getAllMaps() {
+    public ResponseEntity<List<GameMap>> getAllMaps() {
 		return new ResponseEntity<>(mapService.getAllMaps(), HttpStatus.OK);
 	}
 
 	@GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	@ApiOperation(value = "A method to get a single map by its id", response = Map.class)
+    @ApiOperation(value = "A method to get a single map by its id", response = GameMap.class)
 	@ApiResponses(value = {
-			@ApiResponse(code = 200, message = "Map successfully retrieved"),
+            @ApiResponse(code = 200, message = "GameMap successfully retrieved"),
 			@ApiResponse(code = 404, message = "No map with that id exists")
 	})
-	public ResponseEntity<Map> getMapById(@PathVariable int id) {
-		Map tempMap = mapService.getMapById(id);
-		if (tempMap != null && !(tempMap.equals(new Map()))) {
-			return new ResponseEntity<>(tempMap, HttpStatus.OK);
+    public ResponseEntity<GameMap> getMapById(@PathVariable int id) {
+        GameMap tempGameMap = mapService.getMapById(id);
+        if (tempGameMap != null && !(tempGameMap.equals(new GameMap()))) {
+            return new ResponseEntity<>(tempGameMap, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
@@ -73,12 +73,12 @@ public class MapController {
 	}
 
 	@GetMapping(value = "/type/{type}", produces = MediaType.APPLICATION_JSON_VALUE)
-	@ApiOperation(value = "A method to get maps by map type", response = Map.class, responseContainer = "List")
+    @ApiOperation(value = "A method to get maps by map type", response = GameMap.class, responseContainer = "List")
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Maps successfully retrieved"),
 			@ApiResponse(code = 404, message = "Type does not exist")
 	})
-	public ResponseEntity<List<Map>> getMapByType(@PathVariable MapType type) {
+    public ResponseEntity<List<GameMap>> getMapByType(@PathVariable MapType type) {
 		try {
 			return new ResponseEntity<>(mapService.getMapsByType(type), HttpStatus.OK);
 		} catch (Exception e) {
@@ -87,11 +87,11 @@ public class MapController {
 	}
 
 	@GetMapping(value = "/standard", produces = MediaType.APPLICATION_JSON_VALUE)
-	@ApiOperation(value = "A method to get all standard (non arcade) maps", response = Map.class, responseContainer = "List")
+    @ApiOperation(value = "A method to get all standard (non arcade) maps", response = GameMap.class, responseContainer = "List")
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Maps successfully retrieved")
 	})
-	public ResponseEntity<List<Map>> getAllStandardMaps() {
+    public ResponseEntity<List<GameMap>> getAllStandardMaps() {
 		return new ResponseEntity<>(mapService.getCompMaps(), HttpStatus.OK);
 	}
 
@@ -129,21 +129,21 @@ public class MapController {
 	}
 
 	@GetMapping(value = "/stats/{id}/{userId}/{seasonId}", produces = MediaType.APPLICATION_JSON_VALUE)
-	@ApiOperation(value = "A method to get statistics for a specific Map", response = Statistic.class)
+    @ApiOperation(value = "A method to get statistics for a specific GameMap", response = Statistic.class)
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Statistics successfuly generated"),
-			@ApiResponse(code = 404, message = "Map not found"),
+            @ApiResponse(code = 404, message = "GameMap not found"),
 			@ApiResponse(code = 404, message = "User not found")
 	})
 	public ResponseEntity<Statistic> getMapStatistics(@PathVariable int id, @PathVariable int userId, @PathVariable int seasonId) {
-		Map tempMap = mapService.getMapById(id);
+        GameMap tempGameMap = mapService.getMapById(id);
 		AppUser tempUser = appUserService.getUserById(userId);
 		Season tempSeason = seasonService.getSeasonById(seasonId);
-		if (tempMap != null && !(tempMap.equals(new Map()))) {
+        if (tempGameMap != null && !(tempGameMap.equals(new GameMap()))) {
 			if (tempUser != null && !(tempUser.equals(new AppUser()))) {
 				if (tempSeason != null && !(tempSeason.equals(new Season()))) {
-					Statistic stat = matchService.getMatchStatistics(matchService.getMatchByMapAndUserInSeason(tempMap, tempUser.getUserId(), tempSeason), tempMap.getName());
-					stat.setIconUrl(tempMap.getIconUrl());
+                    Statistic stat = matchService.getMatchStatistics(matchService.getMatchByMapAndUserInSeason(tempGameMap, tempUser.getUserId(), tempSeason), tempGameMap.getName());
+                    stat.setIconUrl(tempGameMap.getIconUrl());
 					return new ResponseEntity<>(stat, HttpStatus.OK);
 				} else {
 					return new ResponseEntity<>(HttpStatus.NOT_FOUND);

@@ -1,3 +1,5 @@
+-- noinspection SqlResolveForFile
+
 -- noinspection SqlNoDataSourceInspectionForFile
 
 -----------------------------------------------------
@@ -157,7 +159,7 @@ VALUES (28,
         'https://d1u5p3l4wpay3k.cloudfront.net/overwatch_gamepedia/1/19/Icon-D.Va.png?version=a304c3fc9fadb7b885e28f677a9aec8e');
 
 -----------------------------------------------------
--- Insert Map list ----------------------------------
+-- Insert GameMap list ----------------------------------
 -----------------------------------------------------
 INSERT INTO MAP (MAP_ID, NAME, TYPE, ICON_URL)
 VALUES (500,

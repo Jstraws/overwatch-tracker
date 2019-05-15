@@ -55,15 +55,15 @@ public interface MatchRepository extends JpaRepository<Match, Integer> {
 	Match findFirstByAppUserUserIdOrderByMatchDateDesc(int userId);
 
 	/**
-	 * Method to get all matches played on a specific map by a specific user
+	 * Method to get all matches played on a specific gameMap by a specific user
 	 *
-	 * @param map       Map to filter by
+	 * @param gameMap       GameMap to filter by
 	 * @param userId    UserId to filter by
 	 * @param startDate Earliest date match could have been played
 	 * @param endDate   Latest date match could have been played
 	 * @return A list of matches
 	 */
-	List<Match> findAllByMapAndAppUserUserIdAndMatchDateBetweenOrderByMatchDateDesc(Map map, int userId, Timestamp startDate, Timestamp endDate);
+	List<Match> findAllByGameMapAndAppUserUserIdAndMatchDateBetweenOrderByMatchDateDesc(GameMap gameMap, int userId, Timestamp startDate, Timestamp endDate);
 
 	/**
 	 * Method to get all matches played on a specific MapType by a specific user
@@ -74,5 +74,5 @@ public interface MatchRepository extends JpaRepository<Match, Integer> {
 	 * @param endDate   Latest date match could have been played
 	 * @return A list of matches
 	 */
-	List<Match> findAllByMapTypeAndAppUserUserIdAndMatchDateBetweenOrderByMatchDateDesc(MapType mapType, int userId, Timestamp startDate, Timestamp endDate);
+	List<Match> findAllByGameMapTypeAndAppUserUserIdAndMatchDateBetweenOrderByMatchDateDesc(MapType mapType, int userId, Timestamp startDate, Timestamp endDate);
 }

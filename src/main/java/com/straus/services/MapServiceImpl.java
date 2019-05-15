@@ -1,6 +1,6 @@
 package com.straus.services;
 
-import com.straus.beans.Map;
+import com.straus.beans.GameMap;
 import com.straus.beans.MapType;
 import com.straus.repositories.MapRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,7 @@ public class MapServiceImpl implements MapService {
 	 * @return A map with the matching id
 	 */
 	@Override
-	public Map getMapById(int mapId) {
+    public GameMap getMapById(int mapId) {
 		return mapRepository.findById(mapId).orElse(null);
 	}
 
@@ -37,7 +37,7 @@ public class MapServiceImpl implements MapService {
 	 * @return A list of maps with matching MapType
 	 */
 	@Override
-	public List<Map> getMapsByType(MapType mapType) {
+    public List<GameMap> getMapsByType(MapType mapType) {
 		return mapRepository.findAllByTypeOrderByName(mapType);
 	}
 
@@ -47,7 +47,7 @@ public class MapServiceImpl implements MapService {
 	 * @return A list of maps that excludes arcade maps
 	 */
 	@Override
-	public List<Map> getCompMaps() {
+    public List<GameMap> getCompMaps() {
 		return mapRepository.findAllByTypeNotOrderByName(MapType.ARENA);
 	}
 
@@ -57,29 +57,29 @@ public class MapServiceImpl implements MapService {
 	 * @return A list of all maps
 	 */
 	@Override
-	public List<Map> getAllMaps() {
+    public List<GameMap> getAllMaps() {
 		return mapRepository.findAll(new Sort(Sort.Direction.ASC, "name"));
 	}
 
 	/**
-	 * Method to persist a map into the system
-	 *
-	 * @param map New map object to persist
-	 * @return The map object, with the auto-generated id
+     * Method to persist a gameMap into the system
+     *
+     * @param gameMap New gameMap object to persist
+     * @return The gameMap object, with the auto-generated id
 	 */
 	@Override
-	public Map createMap(Map map) {
-		return mapRepository.save(map);
+    public GameMap createMap(GameMap gameMap) {
+        return mapRepository.save(gameMap);
 	}
 
 	/**
-	 * Method to update a map in the system
-	 *
-	 * @param map Map object to update
+     * Method to update a gameMap in the system
+     *
+     * @param gameMap GameMap object to update
 	 */
 	@Override
-	public void updateMap(Map map) {
-		mapRepository.save(map);
+    public void updateMap(GameMap gameMap) {
+        mapRepository.save(gameMap);
 	}
 
 	/**

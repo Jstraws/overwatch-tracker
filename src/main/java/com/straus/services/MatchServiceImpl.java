@@ -133,16 +133,16 @@ public class MatchServiceImpl implements MatchService {
 	}
 
 	/**
-	 * Method to get all matches played on a specific map by a specific user
+	 * Method to get all matches played on a specific gameMap by a specific user
 	 *
-	 * @param map    Map to filter by
+	 * @param gameMap    GameMap to filter by
 	 * @param userId UserId to filter by
 	 * @param season Season to filter by
 	 * @return A list of matches
 	 */
 	@Override
-	public List<Match> getMatchByMapAndUserInSeason(Map map, int userId, Season season) {
-		return matchRepository.findAllByMapAndAppUserUserIdAndMatchDateBetweenOrderByMatchDateDesc(map, userId, season.getStartDate(), season.getEndDate());
+	public List<Match> getMatchByMapAndUserInSeason(GameMap gameMap, int userId, Season season) {
+		return matchRepository.findAllByGameMapAndAppUserUserIdAndMatchDateBetweenOrderByMatchDateDesc(gameMap, userId, season.getStartDate(), season.getEndDate());
 	}
 
 	/**
@@ -155,7 +155,7 @@ public class MatchServiceImpl implements MatchService {
 	 */
 	@Override
 	public List<Match> getMatchByMapTypeAndUserInSeason(MapType mapType, int userId, Season season) {
-		return matchRepository.findAllByMapTypeAndAppUserUserIdAndMatchDateBetweenOrderByMatchDateDesc(mapType, userId, season.getStartDate(), season.getEndDate());
+		return matchRepository.findAllByGameMapTypeAndAppUserUserIdAndMatchDateBetweenOrderByMatchDateDesc(mapType, userId, season.getStartDate(), season.getEndDate());
 	}
 
 	/**

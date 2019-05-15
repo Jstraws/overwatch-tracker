@@ -28,8 +28,8 @@ public class Match {
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "MAP_ID")
-	@ApiModelProperty(value = "Map match was played on")
-	private Map map;
+	@ApiModelProperty(value = "GameMap match was played on")
+	private GameMap gameMap;
 
 	@ManyToMany
 	@JoinTable(
@@ -58,9 +58,9 @@ public class Match {
 	@ApiModelProperty(value = "User who played the match")
 	private AppUser appUser;
 
-	public Match(Result result, Map map, List<Hero> heroes, Timestamp matchDate, int rank, int rankDifference, AppUser appUser) {
+	public Match(Result result, GameMap gameMap, List<Hero> heroes, Timestamp matchDate, int rank, int rankDifference, AppUser appUser) {
 		this.result = result;
-		this.map = map;
+		this.gameMap = gameMap;
 		this.heroes = heroes;
 		this.matchDate = matchDate;
 		this.rank = rank;
@@ -87,12 +87,12 @@ public class Match {
 		this.result = result;
 	}
 
-	public Map getMap() {
-		return map;
+	public GameMap getGameMap() {
+		return gameMap;
 	}
 
-	public void setMap(Map map) {
-		this.map = map;
+	public void setGameMap(GameMap gameMap) {
+		this.gameMap = gameMap;
 	}
 
 	public List<Hero> getHeroes() {
@@ -144,7 +144,7 @@ public class Match {
 				getRank() == match.getRank() &&
 				getRankDifference() == match.getRankDifference() &&
 				getResult() == match.getResult() &&
-				Objects.equals(getMap(), match.getMap()) &&
+				Objects.equals(getGameMap(), match.getGameMap()) &&
 				Objects.equals(getHeroes(), match.getHeroes()) &&
 				Objects.equals(getMatchDate(), match.getMatchDate()) &&
 				Objects.equals(getAppUser(), match.getAppUser());
@@ -152,7 +152,7 @@ public class Match {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(getMatchId(), getResult(), getMap(), getHeroes(), getMatchDate(), getRank(), getRankDifference(), getAppUser());
+		return Objects.hash(getMatchId(), getResult(), getGameMap(), getHeroes(), getMatchDate(), getRank(), getRankDifference(), getAppUser());
 	}
 
 	@Override
@@ -160,7 +160,7 @@ public class Match {
 		return "Match{" +
 				"matchId=" + matchId +
 				", result=" + result +
-				", map=" + map +
+				", gameMap=" + gameMap +
 				", heroes=" + heroes +
 				", matchDate=" + matchDate +
 				", rank=" + rank +

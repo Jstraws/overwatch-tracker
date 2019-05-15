@@ -8,8 +8,8 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "MAP")
-@ApiModel(value = "Map", description = "Map that a match is played on")
-public class Map {
+@ApiModel(value = "GameMap", description = "GameMap that a match is played on")
+public class GameMap {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "MAP_ID")
@@ -26,13 +26,13 @@ public class Map {
 	private MapType type;
 
 	@Column(name = "ICON_URL")
-	@ApiModelProperty(value = "Icon for the Map")
+	@ApiModelProperty(value = "Icon for the GameMap")
 	private String iconUrl;
 
-	public Map() {
+	public GameMap() {
 	}
 
-	public Map(String name, MapType type, String iconUrl) {
+	public GameMap(String name, MapType type, String iconUrl) {
 		this.name = name;
 		this.type = type;
 		this.iconUrl = iconUrl;
@@ -74,11 +74,11 @@ public class Map {
 	public boolean equals(Object o) {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
-		Map map = (Map) o;
-		return getMapId() == map.getMapId() &&
-				Objects.equals(getName(), map.getName()) &&
-				getType() == map.getType() &&
-				Objects.equals(getIconUrl(), map.getIconUrl());
+		GameMap gameMap = (GameMap) o;
+		return getMapId() == gameMap.getMapId() &&
+				Objects.equals(getName(), gameMap.getName()) &&
+				getType() == gameMap.getType() &&
+				Objects.equals(getIconUrl(), gameMap.getIconUrl());
 	}
 
 	@Override
@@ -88,7 +88,7 @@ public class Map {
 
 	@Override
 	public String toString() {
-		return "Map{" +
+		return "GameMap{" +
 				"mapId=" + mapId +
 				", name='" + name + '\'' +
 				", type=" + type +

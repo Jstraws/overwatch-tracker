@@ -75,14 +75,14 @@ public interface MatchService {
 	List<Match> getMatchBySeasonAndUserId(Season season, int userId);
 
 	/**
-	 * Method to get all matches played on a specific map by a specific user
+	 * Method to get all matches played on a specific gameMap by a specific user
 	 *
-	 * @param map    Map to filter by
+	 * @param gameMap    GameMap to filter by
 	 * @param userId UserId to filter by
 	 * @param season Season to filter by   
 	 * @return A list of matches
 	 */
-	List<Match> getMatchByMapAndUserInSeason(Map map, int userId, Season season);
+	List<Match> getMatchByMapAndUserInSeason(GameMap gameMap, int userId, Season season);
 
 	/**
 	 * Method to get all matches played on a specific MapType by a specific user
