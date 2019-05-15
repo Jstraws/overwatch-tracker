@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -105,6 +106,7 @@ public class SeasonServiceImpl implements SeasonService {
 					heroStats.put(hero.getName(), tempStat);
 				}
 			}
+            statistic.setHeroStats(new ArrayList<>(heroStats.values()));
 		}
 
 		return statistic;
