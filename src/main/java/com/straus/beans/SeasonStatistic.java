@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SeasonStatistic extends Statistic {
-    List<Statistic> heroStats;
+    private List<Statistic> heroStats;
 
     public SeasonStatistic(String name) {
         super(name);
