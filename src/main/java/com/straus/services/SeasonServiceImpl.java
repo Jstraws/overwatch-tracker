@@ -101,7 +101,7 @@ public class SeasonServiceImpl implements SeasonService {
 					heroStats.put(hero.getName(), tempStat);
 				} else {
 					Statistic tempStat = new Statistic(hero.getName());
-                    statistic.setIconUrl(hero.getHeroUrl());
+                    tempStat.setIconUrl(hero.getHeroUrl());
 					calculateStat(match, tempStat);
 					heroStats.put(hero.getName(), tempStat);
 				}
