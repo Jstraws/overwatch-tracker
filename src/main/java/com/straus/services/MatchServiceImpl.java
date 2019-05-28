@@ -204,7 +204,7 @@ public class MatchServiceImpl implements MatchService {
         for (int i = 0; i < 30; i++) {
             LocalDate date = startDate.plusDays(i);
             DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MMMM d, YYYY");
-            dateMap.put(date, new ActivityStatistic(dateFormat.format(date)));
+            dateMap.put(date, new ActivityStatistic(dateFormat.format(date), ((int) Math.floor(Math.random() * 10))));
         }
 
         Timestamp startDateTimestamp = Timestamp.valueOf(startDate.atStartOfDay());
