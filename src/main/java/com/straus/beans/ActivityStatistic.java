@@ -4,28 +4,27 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-import java.time.LocalDate;
 import java.util.Comparator;
 
 public class ActivityStatistic implements Comparator<ActivityStatistic> {
-    private LocalDate date;
+    private String date;
     private int value;
 
-    public ActivityStatistic(LocalDate date, int value) {
+    public ActivityStatistic(String date, int value) {
         this.date = date;
         this.value = value;
     }
 
-    public ActivityStatistic(LocalDate date) {
+    public ActivityStatistic(String date) {
         this.date = date;
         this.value = 0;
     }
 
-    public LocalDate getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
@@ -202,7 +203,8 @@ public class MatchServiceImpl implements MatchService {
         LocalDate startDate = LocalDate.now().minus(Period.ofDays(30));
         for (int i = 0; i < 30; i++) {
             LocalDate date = startDate.plusDays(i);
-            dateMap.put(date, new ActivityStatistic(date));
+            SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM d, YYYY");
+            dateMap.put(date, new ActivityStatistic(dateFormat.format(date)));
         }
 
         Timestamp startDateTimestamp = Timestamp.valueOf(startDate.atStartOfDay());
