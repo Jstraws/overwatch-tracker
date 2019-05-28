@@ -38,6 +38,7 @@ public class MatchController {
 		try {
 			return new ResponseEntity<>(matchService.getMatchByUserId(id), HttpStatus.OK);
 		} catch (Exception e) {
+            e.printStackTrace();
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
