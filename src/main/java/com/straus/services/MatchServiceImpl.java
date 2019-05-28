@@ -202,7 +202,7 @@ public class MatchServiceImpl implements MatchService {
         LocalDate startDate = LocalDate.now().minus(Period.ofDays(30));
         for (int i = 0; i < 30; i++) {
             LocalDate date = startDate.plusDays(i);
-            dateMap.put(date, new ActivityStatistic(Timestamp.valueOf(date.atStartOfDay()).toString()));
+            dateMap.put(date, new ActivityStatistic(date));
         }
 
         Timestamp startDateTimestamp = Timestamp.valueOf(startDate.atStartOfDay());
