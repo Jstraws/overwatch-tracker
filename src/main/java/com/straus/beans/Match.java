@@ -62,7 +62,7 @@ public class Match {
 
     @Column(name = "COMMENTS")
     @ApiModelProperty(value = "Comments regarding the match")
-    private int comments;
+    private String comments;
 
     public Match() {
     }
@@ -131,11 +131,11 @@ public class Match {
         this.appUser = appUser;
     }
 
-    public int getComments() {
+    public String getComments() {
         return comments;
     }
 
-    public void setComments(int comments) {
+    public void setComments(String comments) {
         this.comments = comments;
     }
 
