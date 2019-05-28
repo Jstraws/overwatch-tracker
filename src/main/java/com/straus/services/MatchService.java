@@ -3,6 +3,7 @@ package com.straus.services;
 import com.straus.beans.*;
 import io.swagger.annotations.ApiModel;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @ApiModel(value = "Match Service", description = "Provides interface for the Match service layer")
@@ -118,4 +119,14 @@ public interface MatchService {
      * @return A list of statistics for the past 30 days
      */
     List<ActivityStatistic> getActivityList(int userId);
+
+    /**
+     * Method to fetch the graph data for matches by user and date
+     *
+     * @param userId       The user to filter by
+     * @param startingDate The starting date to filter by
+     * @param endingDate   The ending date to filter by
+     * @return The list of statistics
+     */
+    List<ActivityStatistic> getRankActivityList(int userId, LocalDateTime startingDate, LocalDateTime endingDate);
 }

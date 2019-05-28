@@ -7,12 +7,16 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.stream.Collectors;
+
+import static java.time.temporal.ChronoUnit.DAYS;
 
 @Service
 public class MatchServiceImpl implements MatchService {
@@ -196,7 +200,6 @@ public class MatchServiceImpl implements MatchService {
      * @param userId The user id to filter by
      * @return A list of statistics for the past 30 days
      */
-
     @Override
     public List<ActivityStatistic> getActivityList(int userId) {
         Map<LocalDate, ActivityStatistic> dateMap = new TreeMap<>();
@@ -204,7 +207,7 @@ public class MatchServiceImpl implements MatchService {
         for (int i = 0; i < 30; i++) {
             LocalDate date = startDate.plusDays(i);
             DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MMMM d, YYYY");
-            dateMap.put(date, new ActivityStatistic(dateFormat.format(date), ((int) Math.floor(Math.random() * 10))));
+            dateMap.put(date, new ActivityStatistic(dateFormat.format(date), 0));
         }
 
         Timestamp startDateTimestamp = Timestamp.valueOf(startDate.atStartOfDay());
@@ -214,6 +217,43 @@ public class MatchServiceImpl implements MatchService {
         for (Match match : matches) {
             LocalDate date = match.getMatchDate().toLocalDateTime().toLocalDate();
             dateMap.get(date).incrementValue();
+        }
+
+        return new ArrayList<>(dateMap.values());
+    }
+
+    /**
+     * Method to fetch the graph data for matches by user and date
+     *
+     * @param userId       The user to filter by
+     * @param startingDate The starting date to filter by
+     * @param endingDate   The ending date to filter by
+     * @return The list of statistics
+     */
+    @Override
+    public List<ActivityStatistic> getRankActivityList(int userId, LocalDateTime startingDate, LocalDateTime endingDate) {
+        Map<LocalDate, ActivityStatistic> dateMap = new TreeMap<>();
+        long daysBetween = DAYS.between(startingDate, endingDate);
+        for (int i = 0; i < daysBetween; i++) {
+            LocalDate date = startingDate.toLocalDate().plusDays(i);
+            DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("MMMM d, YYYY");
+            dateMap.put(date, new ActivityStatistic(dateFormat.format(date), ((int) Math.floor(Math.random() * 1000) + 2000)));
+        }
+
+        Timestamp startDateTimestamp = Timestamp.valueOf(startingDate.toLocalDate().atStartOfDay());
+        Timestamp endDateTimestamp = Timestamp.valueOf(endingDate.toLocalDate().atStartOfDay());
+        List<Match> matches = matchRepository.findAllByMatchDateBetweenAndAppUserUserIdOrderByMatchDateDesc(startDateTimestamp, endDateTimestamp, userId);
+
+        Map<LocalDate, List<Match>> groupedMatches = matches.stream().collect(Collectors.groupingBy(match -> match.getMatchDate().toLocalDateTime().toLocalDate()));
+
+        for (Map.Entry<LocalDate, List<Match>> entry : groupedMatches.entrySet()) {
+            ActivityStatistic tempStat = dateMap.get(entry.getKey());
+            entry.getValue().sort((o1, o2) -> o2.getMatchDate().compareTo(o1.getMatchDate()));
+            if (tempStat.getValue() == 0) {
+                tempStat.setValue(entry.getValue().get(0).getRank());
+            } else {
+                tempStat.setValue(tempStat.getValue() + entry.getValue().get(0).getRank());
+            }
         }
 
         return new ArrayList<>(dateMap.values());

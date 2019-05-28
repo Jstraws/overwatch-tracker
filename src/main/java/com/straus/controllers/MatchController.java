@@ -2,6 +2,7 @@ package com.straus.controllers;
 
 import com.straus.beans.ActivityStatistic;
 import com.straus.beans.Match;
+import com.straus.beans.RankActivityDTO;
 import com.straus.services.MatchService;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiOperation;
@@ -126,6 +127,21 @@ public class MatchController {
     public ResponseEntity<List<ActivityStatistic>> fetchActivityLog(@PathVariable int id) {
         try {
             return new ResponseEntity<>(matchService.getActivityList(id), HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PostMapping(value = "/rank", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ApiOperation(value = "A method to get the last 30 days of activity", response = ActivityStatistic.class, responseContainer = "List")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successfully fetched statistics"),
+            @ApiResponse(code = 500, message = "Could not fetch statistics")
+    })
+    public ResponseEntity<List<ActivityStatistic>> fetchRankActivityLog(@RequestBody RankActivityDTO activityDTO) {
+        try {
+            return new ResponseEntity<>(matchService.getRankActivityList(activityDTO.getUserId(), activityDTO.getStartingDate(), activityDTO.getEndingDate()), HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
