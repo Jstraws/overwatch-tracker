@@ -252,7 +252,7 @@ public class MatchServiceImpl implements MatchService {
             tempValue = matches.get(0).getRank();
         } else {
             Match tempMatch = matchRepository.findFirstByAppUserUserIdOrderByMatchDateDesc(userId);
-            if (tempMatch.getMatchDate().before(Timestamp.valueOf(startingDate.toLocalDate().atStartOfDay()))) {
+            if (tempMatch.getMatchDate().after(Timestamp.valueOf(startingDate.toLocalDate().atStartOfDay()))) {
                 tempValue = 0;
             } else {
                 tempValue = tempMatch.getRank();
