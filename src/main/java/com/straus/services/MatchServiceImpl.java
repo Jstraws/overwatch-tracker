@@ -251,7 +251,12 @@ public class MatchServiceImpl implements MatchService {
         if (!CollectionUtils.isEmpty(matches)) {
             tempValue = matches.get(0).getRank();
         } else {
-            tempValue = matchRepository.findFirstByAppUserUserIdOrderByMatchDateDesc(userId).getRank();
+            Match tempMatch = matchRepository.findFirstByAppUserUserIdOrderByMatchDateDesc(userId);
+            if (tempMatch.getMatchDate().before(Timestamp.valueOf(startingDate.toLocalDate().atStartOfDay()))) {
+                tempValue = 0;
+            } else {
+                tempValue = tempMatch.getRank();
+            }
         }
 
         for (Map.Entry<LocalDate, ActivityStatistic> entry : dateMap.entrySet()) {
