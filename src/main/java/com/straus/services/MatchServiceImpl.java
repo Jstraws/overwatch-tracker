@@ -4,6 +4,7 @@ import com.straus.beans.*;
 import com.straus.repositories.MatchRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.sql.Timestamp;
 import java.time.LocalDate;
@@ -246,7 +247,12 @@ public class MatchServiceImpl implements MatchService {
 
         Map<LocalDate, List<Match>> groupedMatches = matches.stream().collect(Collectors.groupingBy(match -> match.getMatchDate().toLocalDateTime().toLocalDate()));
 
-        int tempValue = matches.get(0).getRank();
+        int tempValue;
+        if (!CollectionUtils.isEmpty(matches)) {
+            tempValue = matches.get(0).getRank();
+        } else {
+            tempValue = 0;
+        }
 
         for (Map.Entry<LocalDate, ActivityStatistic> entry : dateMap.entrySet()) {
             if (groupedMatches.containsKey(entry.getKey())) {
