@@ -251,7 +251,7 @@ public class MatchServiceImpl implements MatchService {
         if (!CollectionUtils.isEmpty(matches)) {
             tempValue = matches.get(0).getRank();
         } else {
-            tempValue = 0;
+            tempValue = matchRepository.findFirstByAppUserUserIdOrderByMatchDateDesc(userId).getRank();
         }
 
         for (Map.Entry<LocalDate, ActivityStatistic> entry : dateMap.entrySet()) {
