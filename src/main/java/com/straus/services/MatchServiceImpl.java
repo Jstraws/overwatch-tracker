@@ -248,7 +248,7 @@ public class MatchServiceImpl implements MatchService {
         Map<LocalDate, List<Match>> groupedMatches = matches.stream().collect(Collectors.groupingBy(match -> match.getMatchDate().toLocalDateTime().toLocalDate()));
 
         int tempValue;
-        if (!CollectionUtils.isEmpty(matches)) {
+        if (!CollectionUtils.isEmpty(matches) && matches.get(0).getMatchDate().after(Timestamp.valueOf(startingDate.toLocalDate().atStartOfDay()))) {
             tempValue = matches.get(0).getRank();
         } else {
             Match tempMatch = matchRepository.findFirstByAppUserUserIdOrderByMatchDateDesc(userId);
