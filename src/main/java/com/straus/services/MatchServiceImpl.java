@@ -246,7 +246,19 @@ public class MatchServiceImpl implements MatchService {
 
         Map<LocalDate, List<Match>> groupedMatches = matches.stream().collect(Collectors.groupingBy(match -> match.getMatchDate().toLocalDateTime().toLocalDate()));
 
-        for (Map.Entry<LocalDate, List<Match>> entry : groupedMatches.entrySet()) {
+        int tempValue = matches.get(0).getRank();
+
+        for (Map.Entry<LocalDate, ActivityStatistic> entry : dateMap.entrySet()) {
+            if (groupedMatches.containsKey(entry.getKey())) {
+                groupedMatches.get(entry.getKey()).sort((o1, o2) -> o2.getMatchDate().compareTo(o1.getMatchDate()));
+                tempValue = groupedMatches.get(entry.getKey()).get(0).getRank();
+                entry.getValue().setValue(tempValue);
+            } else {
+                entry.getValue().setValue(tempValue);
+            }
+        }
+
+        /*for (Map.Entry<LocalDate, List<Match>> entry : groupedMatches.entrySet()) {
             ActivityStatistic tempStat = dateMap.get(entry.getKey());
             entry.getValue().sort((o1, o2) -> o2.getMatchDate().compareTo(o1.getMatchDate()));
             if (tempStat.getValue() == 0) {
@@ -254,7 +266,7 @@ public class MatchServiceImpl implements MatchService {
             } else {
                 tempStat.setValue(tempStat.getValue() + entry.getValue().get(0).getRank());
             }
-        }
+        }*/
 
         return new ArrayList<>(dateMap.values());
     }
