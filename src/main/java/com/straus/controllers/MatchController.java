@@ -15,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.Period;
 import java.util.List;
 
 @RestController
@@ -141,7 +142,7 @@ public class MatchController {
     })
     public ResponseEntity<List<ActivityStatistic>> fetchRankActivityLog(@RequestBody RankActivityDTO activityDTO) {
         try {
-            return new ResponseEntity<>(matchService.getRankActivityList(activityDTO.getUserId(), activityDTO.getStartingDate(), activityDTO.getEndingDate()), HttpStatus.OK);
+            return new ResponseEntity<>(matchService.getRankActivityList(activityDTO.getUserId(), activityDTO.getStartingDate(), activityDTO.getEndingDate().plus(Period.ofDays(1))), HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
